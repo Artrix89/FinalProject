@@ -10,6 +10,9 @@ namespace FinalProject
     {
         static void Main(string[] args)
         {
+            var currentMatch = new Match();
+
+            Console.ReadLine();
         }
     }
 }
