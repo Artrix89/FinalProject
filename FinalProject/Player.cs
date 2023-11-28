@@ -24,7 +24,7 @@ namespace FinalProject
             _name = firstNameDB[Match.GetRandomInt(firstNameDB.Length)] + " " +
                 lastNameDB[Match.GetRandomInt(lastNameDB.Length)];
 
-            Console.WriteLine("Name: " +  _name);
+            //Console.WriteLine("Name: " +  _name);
         }
 
         #region properties

@@ -22,7 +22,7 @@ namespace FinalProject
                 _earnedRunAverage += Match.GetRandomDouble() / 16.875;
             }
             _earnedRunAverage = Math.Round(_earnedRunAverage, 3);
-            Console.WriteLine("ERA: " + earnedRunAverage);
+            //Console.WriteLine("ERA: " + earnedRunAverage);
         }
 
         #region properties

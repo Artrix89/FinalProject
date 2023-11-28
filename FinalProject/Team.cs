@@ -13,6 +13,9 @@ namespace FinalProject
         private double _pitcherLimit;
         private Batter[] _batterList = new Batter[10];
         private Pitcher[] _pitcherList = new Pitcher[5];
+        private int _batterIndex = 0;
+        private int _pitcherIndex = 1;
+        private int _score = 0;
         #endregion
 
         #region location and mascot database
@@ -48,17 +51,41 @@ namespace FinalProject
         #region properties
         public string teamName { get { return _teamName; } set { _teamName = value; } }
         public double pitcherLimit { get { return _pitcherLimit; } set { _pitcherLimit = value; } }
+        public int score { get { return _score; } set { _score = value; } }
+        public int batterIndex
+        {
+            get
+            {
+                _batterIndex++;
+                if (_batterIndex > 9)
+                    _batterIndex = 1;
+                return _batterIndex;
+            }
+            set { _batterIndex = value; }
+        }
+        public int pitcherIndex { get { return _pitcherIndex; }
+            set { _pitcherIndex = value; } }
         #endregion
+
+        public Batter GetCurrentBatter( )
+        {
+            return _batterList[batterIndex];
+        }
+
+        public Pitcher GetCurrentPitcher()
+        {
+            return _pitcherList[pitcherIndex];
+        }
 
         private void FillTeam()
         {
-            Console.WriteLine("Batters for the " + _teamName + ":");
+            //Console.WriteLine("Batters for the " + _teamName + ":");
             for (int k = 1; k <= 9; k++)
             {
                 _batterList[k] = new Batter();
             }
 
-            Console.WriteLine("Pitchers for the " + _teamName + ":");
+            //Console.WriteLine("Pitchers for the " + _teamName + ":");
             for (int k = 1; k <= 4; k++)
             {
                 _pitcherList[k] = new Pitcher();

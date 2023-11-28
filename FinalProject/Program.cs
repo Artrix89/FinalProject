@@ -11,7 +11,7 @@ namespace FinalProject
         static void Main(string[] args)
         {
             var currentMatch = new Match();
-
+            currentMatch.StartGame();
 
 
             Console.ReadLine();

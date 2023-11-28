@@ -22,7 +22,7 @@ namespace FinalProject
                 _battingPercentage += Match.GetRandomDouble() / 30;
             }
             _battingPercentage = Math.Round(_battingPercentage, 3);
-            Console.WriteLine("Batting Average: " +  _battingPercentage);
+            //Console.WriteLine("Batting Average: " +  _battingPercentage);
         }
 
         #region properties
