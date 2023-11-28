@@ -16,7 +16,13 @@ namespace FinalProject
 
         public Batter()
         {
-            
+            _battingPercentage = 0;
+            for ( int k = 0; k < 15; k++ )
+            {
+                _battingPercentage += Match.GetRandomDouble() / 30;
+            }
+            _battingPercentage = Math.Round(_battingPercentage, 3);
+            Console.WriteLine("Batting Average: " +  _battingPercentage);
         }
 
         #region properties

@@ -11,8 +11,8 @@ namespace FinalProject
         #region variables
         private string _teamName;
         private double _pitcherLimit;
-        private Batter[] _batterList = new Batter[9];
-        private Pitcher[] _pitcherList = new Pitcher[4];
+        private Batter[] _batterList = new Batter[10];
+        private Pitcher[] _pitcherList = new Pitcher[5];
         #endregion
 
         #region location and mascot database
@@ -55,13 +55,13 @@ namespace FinalProject
             Console.WriteLine("Batters for the " + _teamName + ":");
             for (int k = 1; k <= 9; k++)
             {
-                _batterList[1] = new Batter();
+                _batterList[k] = new Batter();
             }
 
             Console.WriteLine("Pitchers for the " + _teamName + ":");
             for (int k = 1; k <= 4; k++)
             {
-                _pitcherList[1] = new Pitcher();
+                _pitcherList[k] = new Pitcher();
             }
         }
 
