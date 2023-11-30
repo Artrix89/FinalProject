@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,12 @@ namespace FinalProject
         #endregion
 
         #region properties
+        public string homeTeam { get { return _homeTeam.teamName; } }
+        public string awayTeam { get { return _awayTeam.teamName; } }
+        public Batter homeBatter { get { return _homeTeam.GetCurrentBatter(); } }
+        public Batter awayBatter { get { return _awayTeam.GetCurrentBatter(); } }
+        public Pitcher homePitcher { get { return _homeTeam.GetNextPitcher(); } }
+        public Pitcher awayPitcher { get { return _awayTeam.GetNextPitcher(); } }
         public int inning { get { return _inning; } set { _inning = value; } }
         public int strikes { get { return _strikes; } set { _strikes = value; } }
         public int balls { get { return _balls; } set { _balls = value; } }

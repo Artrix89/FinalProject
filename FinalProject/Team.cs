@@ -14,7 +14,7 @@ namespace FinalProject
         private Batter[] _batterList = new Batter[10];
         private Pitcher[] _pitcherList = new Pitcher[5];
         private int _batterIndex = 0;
-        private int _pitcherIndex = 1;
+        private int _pitcherIndex = 0;
         private int _score = 0;
         #endregion
 
@@ -56,20 +56,33 @@ namespace FinalProject
         {
             get
             {
-                _batterIndex++;
                 if (_batterIndex > 9)
                     _batterIndex = 1;
                 return _batterIndex;
             }
             set { _batterIndex = value; }
         }
-        public int pitcherIndex { get { return _pitcherIndex; }
+        public int pitcherIndex { 
+            get 
+            { 
+                if (_pitcherIndex > 4)
+                    _pitcherIndex = 1;
+                return _pitcherIndex; 
+            }
             set { _pitcherIndex = value; } }
         #endregion
 
+
         public Batter GetCurrentBatter( )
         {
+            batterIndex++;
             return _batterList[batterIndex];
+        }
+
+        public Pitcher GetNextPitcher( )
+        {
+            pitcherIndex++;
+            return _pitcherList[pitcherIndex];
         }
 
         public Pitcher GetCurrentPitcher()
