@@ -555,10 +555,10 @@
             this.inningText.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.inningText.Cursor = System.Windows.Forms.Cursors.Default;
             this.inningText.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inningText.Location = new System.Drawing.Point(515, 185);
+            this.inningText.Location = new System.Drawing.Point(459, 185);
             this.inningText.Name = "inningText";
             this.inningText.ReadOnly = true;
-            this.inningText.Size = new System.Drawing.Size(163, 37);
+            this.inningText.Size = new System.Drawing.Size(271, 37);
             this.inningText.TabIndex = 42;
             this.inningText.Text = "TOP 0TH";
             this.inningText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;

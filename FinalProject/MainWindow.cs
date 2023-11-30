@@ -20,7 +20,7 @@ namespace FinalProject
         }
 
         #region UI updating
-        private void UpdateUIElements()
+        private void InitializeUIElements()
         {
             homeTeamText.Text = currentMatch.homeTeam;
             awayTeamText.Text = currentMatch.awayTeam;
@@ -47,7 +47,7 @@ namespace FinalProject
             }
         }
 
-        void changeLine(RichTextBox RTB, int line, string text)
+        private void changeLine(RichTextBox RTB, int line, string text)
         {
             int s1 = RTB.GetFirstCharIndexFromLine(line);
             int s2 = line < RTB.Lines.Count() - 1 ?
@@ -56,17 +56,39 @@ namespace FinalProject
             RTB.Select(s1, s2 - s1);
             RTB.SelectedText = text;
         }
+
+        public void WriteToLog(string text)
+        {
+            gameLog.Text = text;
+        }
+
+        public void UpdateScore( int homePoints, int awayPoints )
+        {
+            homeScore.Text = Convert.ToString(homePoints);
+            awayScore.Text = Convert.ToString(awayPoints);
+        }
+
+        public void ChangeHalf( int inning, bool isBottom )
+        {
+            if ( isBottom )
+            {
+                inningText.Text = "BOTTOM " + inning + "TH";
+            }
+            else
+            {
+                inningText.Text = "TOP " + inning + "TH";
+            }
+        }
         #endregion
 
         private void startNewButton_Click(object sender, EventArgs e)
         {
-            currentMatch = new Match();
-            UpdateUIElements();
+            currentMatch = new Match( this );
+            InitializeUIElements();
         }
 
         private void seededNewButton_Click(object sender, EventArgs e)
-        {
-            
+        { 
         }
     }
 }

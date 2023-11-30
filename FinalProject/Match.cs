@@ -19,14 +19,19 @@ namespace FinalProject
         private bool _isBottomInning = false;
         private static Random randomNum = new Random();
         private Batter[] _onBase = new Batter[4];
+        private MainWindow UI;
         #endregion
 
         #region constructors
-        public Match()
+        public Match( MainWindow ui )
         {
             _inning = 1;
             _homeTeam = new Team();
             _awayTeam = new Team();
+            UI = ui;
+            UI.UpdateScore(_homeTeam.score, _awayTeam.score);
+            UI.ChangeHalf(inning, _isBottomInning);
+            StartGame();
         }
         #endregion
 
@@ -53,11 +58,11 @@ namespace FinalProject
         {
             if (_isBottomInning)
             {
-                Console.WriteLine("Bottom of the " + inning + ", " + battingTeam.teamName + " at bat");
+                UI.WriteToLog("Bottom of the " + inning + ", " + battingTeam.teamName + " at bat");
             }
             else
             {
-                Console.WriteLine("Top of the " + inning + ", " + battingTeam.teamName + " at bat");
+                UI.WriteToLog("Top of the " + inning + ", " + battingTeam.teamName + " at bat");
             }
 
             while( outs < 3 )
@@ -80,11 +85,13 @@ namespace FinalProject
             else
                 _isBottomInning = true;
 
-            if (inning > 1)
+            if (inning > 9)
             {
                 EndGame();
                 return;
             }
+
+            UI.ChangeHalf(inning, _isBottomInning);
             SimulateHalf( battingTeam, pitchingTeam );
         }
 
@@ -93,7 +100,7 @@ namespace FinalProject
             Batter batter = battingTeam.GetCurrentBatter();
             Pitcher pitcher = pitchingTeam.GetCurrentPitcher();
 
-            Console.WriteLine( batter.name + " at bat for the " + battingTeam.teamName + " against " + 
+            UI.WriteToLog( batter.name + " at bat for the " + battingTeam.teamName + " against " + 
                 pitcher.name );
 
             while (strikes < 3 && balls < 4)
@@ -102,16 +109,16 @@ namespace FinalProject
                 {
                     case 0:                        
                         strikes++;
-                        Console.WriteLine("Strike, " + balls + "-" + strikes);
+                        UI.WriteToLog("Strike, " + balls + "-" + strikes);
                         break;
                     case 1:
-                        Console.WriteLine("Hit, " + batter.name + " advances");
+                        UI.WriteToLog("Hit, " + batter.name + " advances");
                         AdvanceBases( battingTeam );
                         _onBase[1] = batter;
                         return;
                     case 2:
                         balls++;
-                        Console.WriteLine("Ball, " + balls + "-" + strikes);
+                        UI.WriteToLog("Ball, " + balls + "-" + strikes);
                         break;
                 }
                 Console.ReadLine();
@@ -119,12 +126,12 @@ namespace FinalProject
             }
             if (strikes >= 3)
             {
-                Console.WriteLine(batter.name + " struck out");
+                UI.WriteToLog(batter.name + " struck out");
                 outs++;
             }
             else if (balls >= 4)
             {
-                Console.WriteLine(batter.name + " drew a walk");
+                UI.WriteToLog(batter.name + " drew a walk");
                 AdvanceBases(battingTeam);
                 _onBase[1] = batter;
             }
@@ -149,8 +156,9 @@ namespace FinalProject
 
             if (_onBase[3] != null)
             {
-                Console.WriteLine(_onBase[3].name + " scores!");
+                UI.WriteToLog(_onBase[3].name + " scores!");
                 battingTeam.score++;
+                UI.UpdateScore(_homeTeam.score, _awayTeam.score);
                 Console.ReadLine();
             }
 
@@ -162,11 +170,11 @@ namespace FinalProject
         private void EndGame()
         {
             if (_homeTeam.score > _awayTeam.score)
-                Console.WriteLine(_homeTeam.teamName + " wins " + _homeTeam.score + " to " + _awayTeam.score);
+                UI.WriteToLog(_homeTeam.teamName + " wins " + _homeTeam.score + " to " + _awayTeam.score);
             else if (_homeTeam.score < _awayTeam.score)
-                Console.WriteLine(_awayTeam.teamName + " wins " + _awayTeam.score + " to " + _homeTeam.score);
+                UI.WriteToLog(_awayTeam.teamName + " wins " + _awayTeam.score + " to " + _homeTeam.score);
             else
-                Console.WriteLine("Game ends in a tie");
+                UI.WriteToLog("Game ends in a tie");
         }
 
         #endregion

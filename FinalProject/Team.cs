@@ -36,14 +36,12 @@ namespace FinalProject
         {
             _teamName = teamLocationDB[Match.GetRandomInt(teamLocationDB.Length)] + " " +
                 teamMascotDB[Match.GetRandomInt(teamMascotDB.Length)];
-            Console.WriteLine("Team Name: " + _teamName);
             FillTeam();
         }
 
         public Team(string name)
         {
             _teamName = name;
-            Console.WriteLine("Team Name: " + _teamName);
             FillTeam();            
         }
         #endregion
@@ -56,6 +54,7 @@ namespace FinalProject
         {
             get
             {
+                _batterIndex++;
                 if (_batterIndex > 9)
                     _batterIndex = 1;
                 return _batterIndex;
@@ -64,7 +63,8 @@ namespace FinalProject
         }
         public int pitcherIndex { 
             get 
-            { 
+            {
+                _pitcherIndex++;
                 if (_pitcherIndex > 4)
                     _pitcherIndex = 1;
                 return _pitcherIndex; 
@@ -75,13 +75,13 @@ namespace FinalProject
 
         public Batter GetCurrentBatter( )
         {
-            batterIndex++;
+            //batterIndex++;
             return _batterList[batterIndex];
         }
 
         public Pitcher GetNextPitcher( )
         {
-            pitcherIndex++;
+            //pitcherIndex++;
             return _pitcherList[pitcherIndex];
         }
 
