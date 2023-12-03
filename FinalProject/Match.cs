@@ -37,7 +37,6 @@ namespace FinalProject
 
             UI = ui;
             UI.UpdateScore(_homeTeam.score, _awayTeam.score);
-            UI.ChangeHalf(inning, _isBottomInning);
 
             nextStep = 0;
             timer.Elapsed += OnTimerElapsed;
@@ -105,13 +104,6 @@ namespace FinalProject
                     return _inning + "th";
             }
             }
-        public bool isBottomInning { 
-            get
-            {
-                _isBottomInning = !_isBottomInning;
-                return _isBottomInning;
-            } 
-        }
         #endregion
 
         #region simulation methods
@@ -128,12 +120,11 @@ namespace FinalProject
             _onBase[2] = null;
             _onBase[3] = null;
 
-            if (isBottomInning)
+            if (_isBottomInning)
             {
                 battingTeam = _homeTeam;
                 pitchingTeam = _awayTeam;
                 UI.WriteToLog("Bottom of the " + inning + ", " + homeTeam + " at bat");
-                _inning += 1;
             }
             else
             {
@@ -143,6 +134,14 @@ namespace FinalProject
             }
 
             UI.ChangeHalf(inning, _isBottomInning);
+
+            if (_isBottomInning)
+            {
+                _inning += 1;
+                _isBottomInning = false;
+            }
+            else
+                _isBottomInning = true;
             nextStep = 1;
 
         }
@@ -164,22 +163,16 @@ namespace FinalProject
         {
             double pitch = GetRandomDouble();
             if (pitch + .9 < currentBatter.battingPercentage) //Hit + .1
-            {
-                Console.WriteLine("Next step is Hit");
                 nextStep = 5;
-            }
+            
 
             else if (pitch + .9 < currentBatter.battingPercentage) //Ball - .2
-            {
-                Console.WriteLine("Next step is Ball");
                 nextStep = 3;
-            }
+            
 
-            else //Strike
-            {
-                Console.WriteLine("Next step is Strike");
+            else //Strike            
                 nextStep = 2;
-            }
+            
         }
 
         private void GetStrike() //timer code 2
