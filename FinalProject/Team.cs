@@ -75,19 +75,17 @@ namespace FinalProject
 
         public Batter GetCurrentBatter( )
         {
-            //batterIndex++;
             return _batterList[batterIndex];
         }
 
         public Pitcher GetNextPitcher( )
         {
-            //pitcherIndex++;
             return _pitcherList[pitcherIndex];
         }
 
         public Pitcher GetCurrentPitcher()
         {
-            return _pitcherList[pitcherIndex];
+            return _pitcherList[_pitcherIndex];
         }
 
         private void FillTeam()

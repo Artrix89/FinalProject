@@ -72,6 +72,7 @@
             this.inningText = new System.Windows.Forms.TextBox();
             this.batterText = new System.Windows.Forms.TextBox();
             this.pitcherText = new System.Windows.Forms.TextBox();
+            this.scoreText = new System.Windows.Forms.TextBox();
             homeBatterHeader = new System.Windows.Forms.TextBox();
             homePitcherHeader = new System.Windows.Forms.TextBox();
             awayBatterHeader = new System.Windows.Forms.TextBox();
@@ -540,7 +541,7 @@
             this.gameLog.Cursor = System.Windows.Forms.Cursors.Default;
             this.gameLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gameLog.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.gameLog.Location = new System.Drawing.Point(473, 242);
+            this.gameLog.Location = new System.Drawing.Point(473, 181);
             this.gameLog.Multiline = true;
             this.gameLog.Name = "gameLog";
             this.gameLog.ReadOnly = true;
@@ -555,7 +556,7 @@
             this.inningText.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.inningText.Cursor = System.Windows.Forms.Cursors.Default;
             this.inningText.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inningText.Location = new System.Drawing.Point(459, 185);
+            this.inningText.Location = new System.Drawing.Point(459, 121);
             this.inningText.Name = "inningText";
             this.inningText.ReadOnly = true;
             this.inningText.Size = new System.Drawing.Size(271, 37);
@@ -567,7 +568,7 @@
             // 
             this.batterText.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.batterText.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.batterText.Location = new System.Drawing.Point(353, 97);
+            this.batterText.Location = new System.Drawing.Point(353, 71);
             this.batterText.Multiline = true;
             this.batterText.Name = "batterText";
             this.batterText.ReadOnly = true;
@@ -589,11 +590,29 @@
             this.pitcherText.Text = "Pitching:";
             this.pitcherText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // scoreText
+            // 
+            this.scoreText.BackColor = System.Drawing.SystemColors.Control;
+            this.scoreText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.scoreText.Cursor = System.Windows.Forms.Cursors.Default;
+            this.scoreText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scoreText.ForeColor = System.Drawing.SystemColors.MenuText;
+            this.scoreText.Location = new System.Drawing.Point(473, 274);
+            this.scoreText.Multiline = true;
+            this.scoreText.Name = "scoreText";
+            this.scoreText.ReadOnly = true;
+            this.scoreText.Size = new System.Drawing.Size(247, 71);
+            this.scoreText.TabIndex = 45;
+            this.scoreText.Text = "Default Placeholder\r\n";
+            this.scoreText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.scoreText.Visible = false;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1194, 638);
+            this.Controls.Add(this.scoreText);
             this.Controls.Add(this.pitcherText);
             this.Controls.Add(this.batterText);
             this.Controls.Add(this.inningText);
@@ -707,5 +726,6 @@
         private System.Windows.Forms.TextBox batterText;
         private System.Windows.Forms.TextBox pitcherText;
         private System.Windows.Forms.TextBox homeTeamText;
+        private System.Windows.Forms.TextBox scoreText;
     }
 }

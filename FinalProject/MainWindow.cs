@@ -59,24 +59,39 @@ namespace FinalProject
 
         public void WriteToLog(string text)
         {
-            gameLog.Text = text;
+            Console.WriteLine(text);
+            gameLog.Invoke((MethodInvoker)(() => gameLog.Text = text));
+        }
+
+        public async void WriteToScore(string text) 
+        {
+            scoreText.Invoke((MethodInvoker)(() => {
+                scoreText.Visible = true;
+                scoreText.Text = text;
+            }
+            ));
+            await Task.Delay(2000);
+            scoreText.Invoke((MethodInvoker)(() => scoreText.Visible = false));
+
         }
 
         public void UpdateScore( int homePoints, int awayPoints )
         {
-            homeScore.Text = Convert.ToString(homePoints);
-            awayScore.Text = Convert.ToString(awayPoints);
+            homeScore.Invoke((MethodInvoker)(() => {
+                homeScore.Text = Convert.ToString(homePoints);
+                awayScore.Text = Convert.ToString(awayPoints);
+            }));
         }
 
-        public void ChangeHalf( int inning, bool isBottom )
+        public void ChangeHalf( string inning, bool isBottom )
         {
             if ( isBottom )
             {
-                inningText.Text = "BOTTOM " + inning + "TH";
+                inningText.Invoke((MethodInvoker)(() => inningText.Text = "BOTTOM " + inning));
             }
             else
             {
-                inningText.Text = "TOP " + inning + "TH";
+                inningText.Invoke((MethodInvoker)(() => inningText.Text = "TOP " + inning));
             }
         }
         #endregion
