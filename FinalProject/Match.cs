@@ -15,9 +15,9 @@ namespace FinalProject
         #region variables
         private Team _homeTeam, pitchingTeam;
         private Team _awayTeam, battingTeam;
-        private int _strikes = 0;
-        private int _balls = 0;
-        private int _outs = 0;
+        private int strikes = 0;
+        private int balls = 0;
+        private int outs = 0;
         private int _inning = 1;
         private bool _isBottomInning = false;
         private static Random randomNum = new Random();
@@ -38,7 +38,7 @@ namespace FinalProject
             UI = ui;
             UI.UpdateScore(_homeTeam.score, _awayTeam.score);
 
-            nextStep = 0;
+            ChangeHalf();
             timer.Elapsed += OnTimerElapsed;
             timer.AutoReset = true;
             timer.Enabled = true;
@@ -47,7 +47,7 @@ namespace FinalProject
 
         private void OnTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            //Should already have 0 queued
+            //Should already have 1 queued
             switch (nextStep)
             {
                 case 0: //Every Inning Change, Queues 1 or Ends Game depending on innings
@@ -88,9 +88,17 @@ namespace FinalProject
         public Batter awayBatter { get { return _awayTeam.GetCurrentBatter(); } }
         public Pitcher homePitcher { get { return _homeTeam.GetNextPitcher(); } }
         public Pitcher awayPitcher { get { return _awayTeam.GetNextPitcher(); } }
-        public int strikes { get { return _strikes; } set { _strikes = value; } }
-        public int balls { get { return _balls; } set { _balls = value; } }
-        public int outs { get { return _outs; } set { _outs = value; } }
+        public int onBase { get
+            {
+                int code = 0;
+                if ( _onBase[1] != null )
+                    code += 1;
+                if (_onBase[2] != null )
+                    code += 2;
+                if (_onBase[3] != null )
+                    code += 4;
+                return code;
+            } }
         public string inning {
             get 
             {
@@ -119,6 +127,8 @@ namespace FinalProject
             _onBase[1] = null;
             _onBase[2] = null;
             _onBase[3] = null;
+            UI.UpdateOuts(outs);
+            UI.UpdateBases(onBase);
 
             if (_isBottomInning)
             {
@@ -134,6 +144,7 @@ namespace FinalProject
             }
 
             UI.ChangeHalf(inning, _isBottomInning);
+            UI.UpdateCurrentPlayers("", "");
 
             if (_isBottomInning)
             {
@@ -150,8 +161,12 @@ namespace FinalProject
         {
             currentBatter = battingTeam.GetCurrentBatter();
             currentPitcher = pitchingTeam.GetCurrentPitcher();
+            UI.UpdateCurrentPlayers(currentBatter.name, currentPitcher.name);
             balls = 0;
             strikes = 0;
+            UI.UpdateStrikes(strikes);
+            UI.UpdateBalls(balls);
+            UI.UpdateOuts(outs);
 
             UI.WriteToLog(currentBatter.name + " at bat for the " + battingTeam.teamName + " against " +
                 currentPitcher.name);
@@ -162,11 +177,11 @@ namespace FinalProject
         private void SimulatePitch()
         {
             double pitch = GetRandomDouble();
-            if (pitch + .9 < currentBatter.battingPercentage) //Hit + .1
+            if (pitch + .1 < currentBatter.battingPercentage) //Hit + .1
                 nextStep = 5;
             
 
-            else if (pitch + .9 < currentBatter.battingPercentage) //Ball - .2
+            else if (pitch - .2 < currentBatter.battingPercentage) //Ball - .2
                 nextStep = 3;
             
 
@@ -177,8 +192,22 @@ namespace FinalProject
 
         private void GetStrike() //timer code 2
         {
+            if (GetRandomDouble() < .5)
+            {
+                if (strikes < 2)
+                    strikes++;
+                UI.WriteToLog("Foul ball, " + balls + "-" + strikes);
+                UI.UpdateStrikes(strikes);
+                SimulatePitch();
+                return;
+            }
+
             strikes++;
-            UI.WriteToLog("Strike, " + balls + "-" + strikes);
+            UI.UpdateStrikes(strikes);
+            if (GetRandomDouble() < .5)
+                UI.WriteToLog("Strike looking, " + balls + "-" + strikes);
+            else
+                UI.WriteToLog("Strike swinging, " + balls + "-" + strikes);
 
             if (strikes >= 3)
                 nextStep = 4;
@@ -189,6 +218,7 @@ namespace FinalProject
         private void GetBall() //timer code 3
         {
             balls++;
+            UI.UpdateBalls(balls);
             UI.WriteToLog("Ball, " + balls + "-" + strikes);
 
             if (balls >= 4)
@@ -220,20 +250,46 @@ namespace FinalProject
                     UI.UpdateScore(_homeTeam.score, _awayTeam.score);
                 }
                 if (_onBase[2] != null && _onBase[1] != null)
+                {
                     _onBase[3] = _onBase[2];
+                }
                 _onBase[2] = _onBase[1];
                 _onBase[1] = currentBatter;
+                UI.UpdateBases(onBase);
+                
             }
             nextStep = 1;
         }
 
         private void GetHitBall() //timer code 5
         {
+            double tmp = GetRandomDouble();
 
+            if (tmp > .8)
+            {
+                UI.WriteToLog(currentBatter.name + " hit a ground out");
+                outs++;
+                if (outs >= 3)
+                {
+                    nextStep = 0;
+                    return;
+                }
+            }
+            else if (tmp > .6)
+            {
+                UI.WriteToLog(currentBatter.name + " hit a fly out");
+                outs++;
+                if (outs >= 3)
+                {
+                    nextStep = 0;
+                    return;
+                }
+            }
             UI.WriteToLog("Hit, " + currentBatter.name + " advances");
             AdvanceBases();
             _onBase[1] = currentBatter;
 
+            UI.UpdateBases(onBase);
             nextStep = 1;
         }
 

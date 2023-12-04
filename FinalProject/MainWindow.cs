@@ -6,7 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Ink;
 
 namespace FinalProject
 {
@@ -68,8 +70,7 @@ namespace FinalProject
             scoreText.Invoke((MethodInvoker)(() => {
                 scoreText.Visible = true;
                 scoreText.Text = text;
-            }
-            ));
+            }));
             await Task.Delay(2000);
             scoreText.Invoke((MethodInvoker)(() => scoreText.Visible = false));
 
@@ -87,17 +88,143 @@ namespace FinalProject
         {
             if ( isBottom )
             {
-                inningText.Invoke((MethodInvoker)(() => inningText.Text = "BOTTOM " + inning));
+                inningText.Invoke((MethodInvoker)(() => { 
+                    inningText.Text = "BOTTOM " + inning;
+                    batterText.BackColor = Color.DodgerBlue;
+                    pitcherText.BackColor = Color.PaleVioletRed;
+                }));
+
             }
             else
             {
-                inningText.Invoke((MethodInvoker)(() => inningText.Text = "TOP " + inning));
+                inningText.Invoke((MethodInvoker)(() => { 
+                    inningText.Text = "TOP " + inning;
+                    pitcherText.BackColor = Color.DodgerBlue;
+                    batterText.BackColor = Color.PaleVioletRed;
+                }));
             }
         }
+
+        public void UpdateCurrentPlayers( string batter, string pitcher )
+        {
+            batterText.Invoke((MethodInvoker)(() => {
+                batterText.Text = "Batting: " + batter;
+                pitcherText.Text = "Pitching: " + pitcher;
+            }));
+        }
+
+        public void UpdateStrikes( int strikes )
+        {
+            strikeOne.Invoke((MethodInvoker)(() => {
+                if ( strikes == 0 )
+                {
+                    strikeOne.Visible = false;
+                    strikeTwo.Visible = false;
+                }
+                else if ( strikes == 1 )
+                {
+                    strikeOne.Visible = true;
+                    strikeTwo.Visible = false;
+                }
+                else if ( strikes >= 2 )
+                {
+                    strikeOne.Visible = true;
+                    strikeTwo.Visible = true;
+                }
+            }));
+        }
+
+        public void UpdateBalls( int balls)
+        {
+            ballOne.Invoke((MethodInvoker)(() => {
+                if (balls == 0)
+                {
+                    ballOne.Visible = false;
+                    ballTwo.Visible = false;
+                    ballThree.Visible = false;
+                }
+                else if (balls == 1)
+                {
+                    ballOne.Visible = true;
+                    ballTwo.Visible = false;
+                    ballThree.Visible = false;
+                }
+                else if (balls == 2)
+                {
+                    ballOne.Visible = true;
+                    ballTwo.Visible = true;
+                    ballThree.Visible = false;
+                }
+                else if (balls >= 3 )
+                {
+                    ballOne.Visible = true;
+                    ballTwo.Visible = true;
+                    ballThree.Visible = true;
+                }
+            }));
+        }
+
+        public void UpdateOuts( int outs )
+        {
+            outOne.Invoke((MethodInvoker)(() => {
+                if (outs == 0)
+                {
+                    outOne.Visible = false;
+                    outTwo.Visible = false;
+                }
+                else if (outs == 1)
+                {
+                    outOne.Visible = true;
+                    outTwo.Visible = false;
+                }
+                else if (outs >= 2)
+                {
+                    outOne.Visible = true;
+                    outTwo.Visible = true;
+                }
+            }));
+        }
+
+        public void UpdateBases( int code )
+        { 
+
+            baseOne.Invoke((MethodInvoker)(() => {
+            if ( code % 2 == 1 ) 
+            {
+                baseOne.Visible = true;
+                code = code - 1;
+            }
+            else 
+                baseOne.Visible = false;
+
+            if ( code % 4 == 2)
+            {
+                baseTwo.Visible = true;
+                code = code - 2;
+            }
+            else 
+                baseTwo.Visible = false;
+
+            if ( code % 8 == 4)
+            {
+                baseThree.Visible = true;
+                code = code - 3;
+            }
+            else
+                baseThree.Visible = false;
+
+            }));
+        }
+
         #endregion
 
         private void startNewButton_Click(object sender, EventArgs e)
         {
+            if (currentMatch != null)
+            {
+                System.Windows.MessageBox.Show("Match already exists!");
+                return;
+            }
             currentMatch = new Match( this );
             InitializeUIElements();
         }

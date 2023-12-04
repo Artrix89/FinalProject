@@ -216,8 +216,7 @@
             this.homeBatterText.ReadOnly = true;
             this.homeBatterText.Size = new System.Drawing.Size(213, 188);
             this.homeBatterText.TabIndex = 6;
-            this.homeBatterText.Text = "No batter\nNo batter\nNo batter\nNo batter\nNo batter\nNo batter\nNo batter\nNo batter\nN" +
-    "o batter";
+            this.homeBatterText.Text = " \n \n \n \n \n \n \n \n ";
             // 
             // homePitcherText
             // 
@@ -229,7 +228,7 @@
             this.homePitcherText.ReadOnly = true;
             this.homePitcherText.Size = new System.Drawing.Size(213, 90);
             this.homePitcherText.TabIndex = 8;
-            this.homePitcherText.Text = "No pitcher\nNo pitcher\nNo pitcher\nNo pitcher";
+            this.homePitcherText.Text = " \n \n \n ";
             // 
             // awayBatterText
             // 
@@ -241,8 +240,7 @@
             this.awayBatterText.ReadOnly = true;
             this.awayBatterText.Size = new System.Drawing.Size(209, 188);
             this.awayBatterText.TabIndex = 10;
-            this.awayBatterText.Text = "No batter\nNo batter\nNo batter\nNo batter\nNo batter\nNo batter\nNo batter\nNo batter\nN" +
-    "o batter";
+            this.awayBatterText.Text = " \n \n \n \n \n \n \n \n ";
             // 
             // awayPitcherText
             // 
@@ -254,7 +252,7 @@
             this.awayPitcherText.ReadOnly = true;
             this.awayPitcherText.Size = new System.Drawing.Size(209, 90);
             this.awayPitcherText.TabIndex = 11;
-            this.awayPitcherText.Text = "No pitcher\nNo pitcher\nNo pitcher\nNo pitcher";
+            this.awayPitcherText.Text = " \n \n \n ";
             // 
             // homeBatterStats
             // 
@@ -266,7 +264,7 @@
             this.homeBatterStats.ReadOnly = true;
             this.homeBatterStats.Size = new System.Drawing.Size(83, 188);
             this.homeBatterStats.TabIndex = 13;
-            this.homeBatterStats.Text = ".999 OPS\n.999 OPS\n.999 OPS\n.999 OPS\n.999 OPS\n.999 OPS\n.999 OPS\n.999 OPS\n.999 OPS";
+            this.homeBatterStats.Text = " \n \n \n \n \n \n \n \n ";
             // 
             // awayBatterStats
             // 
@@ -278,7 +276,7 @@
             this.awayBatterStats.ReadOnly = true;
             this.awayBatterStats.Size = new System.Drawing.Size(83, 188);
             this.awayBatterStats.TabIndex = 14;
-            this.awayBatterStats.Text = ".999 OPS\n.999 OPS\n.999 OPS\n.999 OPS\n.999 OPS\n.999 OPS\n.999 OPS\n.999 OPS\n.999 OPS";
+            this.awayBatterStats.Text = " \n \n \n \n \n \n \n \n ";
             // 
             // homePitcherStats
             // 
@@ -290,7 +288,7 @@
             this.homePitcherStats.ReadOnly = true;
             this.homePitcherStats.Size = new System.Drawing.Size(83, 90);
             this.homePitcherStats.TabIndex = 15;
-            this.homePitcherStats.Text = "9.99 ERA\n9.99 ERA\n9.99 ERA\n9.99 ERA";
+            this.homePitcherStats.Text = " \n \n \n ";
             // 
             // awayPitcherStats
             // 
@@ -301,7 +299,7 @@
             this.awayPitcherStats.ReadOnly = true;
             this.awayPitcherStats.Size = new System.Drawing.Size(83, 90);
             this.awayPitcherStats.TabIndex = 16;
-            this.awayPitcherStats.Text = "9.99 ERA\n9.99 ERA\n9.99 ERA\n9.99 ERA";
+            this.awayPitcherStats.Text = " \n \n \n ";
             // 
             // outOneOutline
             // 
@@ -547,7 +545,6 @@
             this.gameLog.ReadOnly = true;
             this.gameLog.Size = new System.Drawing.Size(247, 103);
             this.gameLog.TabIndex = 41;
-            this.gameLog.Text = "Default Placeholder\r\n";
             this.gameLog.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // inningText
@@ -561,7 +558,6 @@
             this.inningText.ReadOnly = true;
             this.inningText.Size = new System.Drawing.Size(271, 37);
             this.inningText.TabIndex = 42;
-            this.inningText.Text = "TOP 0TH";
             this.inningText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // batterText
@@ -574,7 +570,6 @@
             this.batterText.ReadOnly = true;
             this.batterText.Size = new System.Drawing.Size(482, 31);
             this.batterText.TabIndex = 43;
-            this.batterText.Text = "Batting:";
             this.batterText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // pitcherText
@@ -587,7 +582,6 @@
             this.pitcherText.ReadOnly = true;
             this.pitcherText.Size = new System.Drawing.Size(482, 31);
             this.pitcherText.TabIndex = 44;
-            this.pitcherText.Text = "Pitching:";
             this.pitcherText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // scoreText
@@ -603,7 +597,6 @@
             this.scoreText.ReadOnly = true;
             this.scoreText.Size = new System.Drawing.Size(247, 71);
             this.scoreText.TabIndex = 45;
-            this.scoreText.Text = "Default Placeholder\r\n";
             this.scoreText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.scoreText.Visible = false;
             // 
