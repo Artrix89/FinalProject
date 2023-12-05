@@ -20,20 +20,21 @@ namespace FinalProject
         private int outs = 0;
         private int _inning = 1;
         private bool _isBottomInning = false;
-        private static Random randomNum = new Random();
+        private Random randomNum;
         private Batter[] _onBase = new Batter[4];
         private MainWindow UI;
         private Timer timer = new Timer(2000);
         private Batter currentBatter;
         private Pitcher currentPitcher;
-        private int nextStep;
+        private Queue<int> nextStep = new Queue<int>();
         #endregion
 
         #region constructors
         public Match( MainWindow ui )
         {
-            _homeTeam = new Team();
-            _awayTeam = new Team();
+            randomNum = new Random();
+            _homeTeam = new Team( this );
+            _awayTeam = new Team( this );
 
             UI = ui;
             UI.UpdateScore(_homeTeam.score, _awayTeam.score);
@@ -43,12 +44,28 @@ namespace FinalProject
             timer.AutoReset = true;
             timer.Enabled = true;
         }
+
+        public Match( MainWindow ui, int seed )
+        {
+            randomNum = new Random( seed );
+            _homeTeam = new Team(this);
+            _awayTeam = new Team(this);
+
+            UI = ui;
+            UI.UpdateScore(_homeTeam.score, _awayTeam.score);
+
+            ChangeHalf();
+            timer.Elapsed += OnTimerElapsed;
+            timer.AutoReset = true;
+            timer.Enabled = true;
+        }
+
         #endregion
 
         private void OnTimerElapsed(object sender, ElapsedEventArgs e)
         {
             //Should already have 1 queued
-            switch (nextStep)
+            switch (nextStep.Dequeue())
             {
                 case 0: //Every Inning Change, Queues 1 or Ends Game depending on innings
                     ChangeHalf();
@@ -129,6 +146,8 @@ namespace FinalProject
             _onBase[3] = null;
             UI.UpdateOuts(outs);
             UI.UpdateBases(onBase);
+            UI.UpdateBalls(balls);
+            UI.UpdateStrikes(strikes);
 
             if (_isBottomInning)
             {
@@ -153,7 +172,7 @@ namespace FinalProject
             }
             else
                 _isBottomInning = true;
-            nextStep = 1;
+            nextStep.Enqueue(1);
 
         }
 
@@ -177,16 +196,16 @@ namespace FinalProject
         private void SimulatePitch()
         {
             double pitch = GetRandomDouble();
-            if (pitch + .1 < currentBatter.battingPercentage) //Hit + .1
-                nextStep = 5;
+            if (pitch > (currentPitcher.earnedRunAverage / 9) + .4 - currentBatter.hittingPercentage) //Hit
+                nextStep.Enqueue(5);
             
 
-            else if (pitch - .2 < currentBatter.battingPercentage) //Ball - .2
-                nextStep = 3;
+            else if (pitch > (currentPitcher.earnedRunAverage / 9) - currentBatter.hittingPercentage) //Ball
+                nextStep.Enqueue(3);
             
 
             else //Strike            
-                nextStep = 2;
+                nextStep.Enqueue(2);
             
         }
 
@@ -210,7 +229,7 @@ namespace FinalProject
                 UI.WriteToLog("Strike swinging, " + balls + "-" + strikes);
 
             if (strikes >= 3)
-                nextStep = 4;
+                nextStep.Enqueue(4);
             else
                 SimulatePitch();
         }
@@ -222,7 +241,7 @@ namespace FinalProject
             UI.WriteToLog("Ball, " + balls + "-" + strikes);
 
             if (balls >= 4)
-                nextStep = 4;
+                nextStep.Enqueue(4);
             else
                 SimulatePitch();
         }
@@ -235,7 +254,7 @@ namespace FinalProject
                 outs++;
                 if (outs >= 3)
                 {
-                    nextStep = 0;
+                    nextStep.Enqueue(0);
                     return;
                 }
             }
@@ -258,7 +277,7 @@ namespace FinalProject
                 UI.UpdateBases(onBase);
                 
             }
-            nextStep = 1;
+            nextStep.Enqueue(1);
         }
 
         private void GetHitBall() //timer code 5
@@ -271,7 +290,7 @@ namespace FinalProject
                 outs++;
                 if (outs >= 3)
                 {
-                    nextStep = 0;
+                    nextStep.Enqueue(0);
                     return;
                 }
             }
@@ -281,33 +300,102 @@ namespace FinalProject
                 outs++;
                 if (outs >= 3)
                 {
-                    nextStep = 0;
+                    nextStep.Enqueue(0);
                     return;
                 }
             }
-            UI.WriteToLog("Hit, " + currentBatter.name + " advances");
-            AdvanceBases();
-            _onBase[1] = currentBatter;
+            else
+            {
+                AdvanceBases();
+                UI.UpdateBases(onBase);
+            }
 
-            UI.UpdateBases(onBase);
-            nextStep = 1;
+            nextStep.Enqueue(1);
         }
 
         private void AdvanceBases()
         {
-            if (_onBase[1] == null && _onBase[2] == null && _onBase[3] == null)
-                return;
-
-            if (_onBase[3] != null)
+            double tmp = GetRandomDouble();
+            if (tmp < .5) // single
             {
-                UI.WriteToScore(_onBase[3].name + " scores!");
+                UI.WriteToLog(currentBatter.name + " hits a single!");
+                if (_onBase[3] != null)
+                {
+                    UI.WriteToScore(_onBase[3].name + " scores!");
+                    battingTeam.score++;
+                    UI.UpdateScore(_homeTeam.score, _awayTeam.score);
+                }
+
+                _onBase[3] = _onBase[2];
+                _onBase[2] = _onBase[1];
+                _onBase[1] = currentBatter;
+            }
+            else if (tmp < .7) // double
+            {
+                UI.WriteToLog(currentBatter.name + " hits a double!");
+                if (_onBase[3] != null)
+                {
+                    UI.WriteToScore(_onBase[3].name + " scores!");
+                    battingTeam.score++;
+                }
+                if (_onBase[2] != null)
+                {
+                    UI.WriteToScore("\n" + _onBase[2].name + " scores!");
+                    battingTeam.score++;
+                }
+                UI.UpdateScore(_homeTeam.score, _awayTeam.score);
+                _onBase[3] = _onBase[1];
+                _onBase[2] = currentBatter;
+                _onBase[1] = null;
+            }
+            else if (tmp < .85) // triple
+            {
+                UI.WriteToLog(currentBatter.name + " hits a triple!");
+                if (_onBase[3] != null)
+                {
+                    UI.WriteToScore(_onBase[3].name + " scores!");
+                    battingTeam.score++;
+                }
+                if (_onBase[2] != null)
+                {
+                    UI.WriteToScore("\n" + _onBase[2].name + " scores!");
+                    battingTeam.score++;
+                }
+                if (_onBase[1] != null)
+                {
+                    UI.WriteToScore("\n" + _onBase[1].name + " scores!");
+                    battingTeam.score++;
+                }
+                UI.UpdateScore(_homeTeam.score, _awayTeam.score);
+                _onBase[3] = currentBatter;
+                _onBase[2] = null;
+                _onBase[1] = null;
+            }
+            else // home run
+            {
+                UI.WriteToLog(currentBatter.name + " hits a home run!");
+                if (_onBase[3] != null)
+                {
+                    UI.WriteToScore(_onBase[3].name + " scores!");
+                    battingTeam.score++;
+                }
+                if (_onBase[2] != null)
+                {
+                    UI.WriteToScore("\n" + _onBase[2].name + " scores!");
+                    battingTeam.score++;
+                }
+                if (_onBase[1] != null)
+                {
+                    UI.WriteToScore("\n" + _onBase[1].name + " scores!");
+                    battingTeam.score++;
+                }
+                UI.WriteToScore("\n" + currentBatter.name + " scores!");
                 battingTeam.score++;
                 UI.UpdateScore(_homeTeam.score, _awayTeam.score);
+                _onBase[3] = null;
+                _onBase[2] = null;
+                _onBase[1] = null;
             }
-
-            _onBase[3] = _onBase[2];
-            _onBase[2] = _onBase[1];
-
         }
 
         private void EndGame()
@@ -320,20 +408,21 @@ namespace FinalProject
                 UI.WriteToLog("Game ends in a tie");
 
             timer.Enabled = false;
+            UI.EndGame();
         }
 
         #endregion
 
         #region methods for random
-        public static double GetRandomDouble()
+        public double GetRandomDouble()
         {
             return randomNum.NextDouble();
         }
-        public static int GetRandomInt( int max)
+        public int GetRandomInt( int max)
         {
             return randomNum.Next( max );
         }
-        public static int GetRandomInt()
+        public int GetRandomInt()
         {
             return randomNum.Next();
         }

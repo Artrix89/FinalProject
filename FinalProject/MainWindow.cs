@@ -15,6 +15,7 @@ namespace FinalProject
     public partial class MainWindow : Form
     {
         Match currentMatch;
+        int step;
 
         public MainWindow()
         {
@@ -61,18 +62,24 @@ namespace FinalProject
 
         public void WriteToLog(string text)
         {
-            Console.WriteLine(text);
-            gameLog.Invoke((MethodInvoker)(() => gameLog.Text = text));
+            gameLog.Invoke((MethodInvoker)(() => { 
+                gameLog.Text = text;
+                stepLabel.Text = "Step " + Convert.ToString(step);
+                step++;
+            }));
         }
 
         public async void WriteToScore(string text) 
         {
             scoreText.Invoke((MethodInvoker)(() => {
                 scoreText.Visible = true;
-                scoreText.Text = text;
+                scoreText.Text = scoreText.Text + text;
             }));
             await Task.Delay(2000);
-            scoreText.Invoke((MethodInvoker)(() => scoreText.Visible = false));
+            scoreText.Invoke((MethodInvoker)(() => {
+                scoreText.Text = "";
+                scoreText.Visible = false; 
+            }));
 
         }
 
@@ -216,6 +223,11 @@ namespace FinalProject
             }));
         }
 
+        public void EndGame()
+        {
+            currentMatch = null;
+        }
+
         #endregion
 
         private void startNewButton_Click(object sender, EventArgs e)
@@ -225,12 +237,33 @@ namespace FinalProject
                 System.Windows.MessageBox.Show("Match already exists!");
                 return;
             }
+            step = 1;
             currentMatch = new Match( this );
+            seedText.ReadOnly = true;
             InitializeUIElements();
         }
 
         private void seededNewButton_Click(object sender, EventArgs e)
-        { 
+        {
+            if (currentMatch != null)
+            {
+                System.Windows.MessageBox.Show("Match already exists!");
+                return;
+            }
+
+            int seed;
+            bool success = int.TryParse( seedText.Text, out seed );
+            if ( success )
+            {
+                currentMatch = new Match(this);
+                seedText.ReadOnly = true;
+                InitializeUIElements();
+                step = 1;
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Please enter a valid seed number!");
+            }
         }
     }
 }

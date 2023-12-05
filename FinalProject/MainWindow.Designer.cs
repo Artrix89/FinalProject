@@ -73,6 +73,8 @@
             this.batterText = new System.Windows.Forms.TextBox();
             this.pitcherText = new System.Windows.Forms.TextBox();
             this.scoreText = new System.Windows.Forms.TextBox();
+            this.seedText = new System.Windows.Forms.TextBox();
+            this.stepLabel = new System.Windows.Forms.Label();
             homeBatterHeader = new System.Windows.Forms.TextBox();
             homePitcherHeader = new System.Windows.Forms.TextBox();
             awayBatterHeader = new System.Windows.Forms.TextBox();
@@ -109,6 +111,7 @@
             homeBatterHeader.ReadOnly = true;
             homeBatterHeader.Size = new System.Drawing.Size(291, 22);
             homeBatterHeader.TabIndex = 5;
+            homeBatterHeader.TabStop = false;
             homeBatterHeader.Text = "Batters";
             homeBatterHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -123,6 +126,7 @@
             homePitcherHeader.ReadOnly = true;
             homePitcherHeader.Size = new System.Drawing.Size(291, 22);
             homePitcherHeader.TabIndex = 7;
+            homePitcherHeader.TabStop = false;
             homePitcherHeader.Text = "Pitchers";
             homePitcherHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -136,6 +140,7 @@
             awayBatterHeader.ReadOnly = true;
             awayBatterHeader.Size = new System.Drawing.Size(291, 22);
             awayBatterHeader.TabIndex = 9;
+            awayBatterHeader.TabStop = false;
             awayBatterHeader.Text = "Batters";
             awayBatterHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -149,6 +154,7 @@
             awayPitcherHeader.ReadOnly = true;
             awayPitcherHeader.Size = new System.Drawing.Size(291, 22);
             awayPitcherHeader.TabIndex = 12;
+            awayPitcherHeader.TabStop = false;
             awayPitcherHeader.Text = "Pitchers";
             awayPitcherHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -176,6 +182,7 @@
             this.homeTeamText.ReadOnly = true;
             this.homeTeamText.Size = new System.Drawing.Size(291, 67);
             this.homeTeamText.TabIndex = 2;
+            this.homeTeamText.TabStop = false;
             this.homeTeamText.Text = "NO TEAM";
             this.homeTeamText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -192,6 +199,7 @@
             this.awayTeamText.ReadOnly = true;
             this.awayTeamText.Size = new System.Drawing.Size(291, 67);
             this.awayTeamText.TabIndex = 3;
+            this.awayTeamText.TabStop = false;
             this.awayTeamText.Text = "NO TEAM";
             this.awayTeamText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -216,6 +224,7 @@
             this.homeBatterText.ReadOnly = true;
             this.homeBatterText.Size = new System.Drawing.Size(213, 188);
             this.homeBatterText.TabIndex = 6;
+            this.homeBatterText.TabStop = false;
             this.homeBatterText.Text = " \n \n \n \n \n \n \n \n ";
             // 
             // homePitcherText
@@ -228,6 +237,7 @@
             this.homePitcherText.ReadOnly = true;
             this.homePitcherText.Size = new System.Drawing.Size(213, 90);
             this.homePitcherText.TabIndex = 8;
+            this.homePitcherText.TabStop = false;
             this.homePitcherText.Text = " \n \n \n ";
             // 
             // awayBatterText
@@ -240,6 +250,7 @@
             this.awayBatterText.ReadOnly = true;
             this.awayBatterText.Size = new System.Drawing.Size(209, 188);
             this.awayBatterText.TabIndex = 10;
+            this.awayBatterText.TabStop = false;
             this.awayBatterText.Text = " \n \n \n \n \n \n \n \n ";
             // 
             // awayPitcherText
@@ -252,6 +263,7 @@
             this.awayPitcherText.ReadOnly = true;
             this.awayPitcherText.Size = new System.Drawing.Size(209, 90);
             this.awayPitcherText.TabIndex = 11;
+            this.awayPitcherText.TabStop = false;
             this.awayPitcherText.Text = " \n \n \n ";
             // 
             // homeBatterStats
@@ -264,6 +276,7 @@
             this.homeBatterStats.ReadOnly = true;
             this.homeBatterStats.Size = new System.Drawing.Size(83, 188);
             this.homeBatterStats.TabIndex = 13;
+            this.homeBatterStats.TabStop = false;
             this.homeBatterStats.Text = " \n \n \n \n \n \n \n \n ";
             // 
             // awayBatterStats
@@ -276,6 +289,7 @@
             this.awayBatterStats.ReadOnly = true;
             this.awayBatterStats.Size = new System.Drawing.Size(83, 188);
             this.awayBatterStats.TabIndex = 14;
+            this.awayBatterStats.TabStop = false;
             this.awayBatterStats.Text = " \n \n \n \n \n \n \n \n ";
             // 
             // homePitcherStats
@@ -288,6 +302,7 @@
             this.homePitcherStats.ReadOnly = true;
             this.homePitcherStats.Size = new System.Drawing.Size(83, 90);
             this.homePitcherStats.TabIndex = 15;
+            this.homePitcherStats.TabStop = false;
             this.homePitcherStats.Text = " \n \n \n ";
             // 
             // awayPitcherStats
@@ -299,6 +314,7 @@
             this.awayPitcherStats.ReadOnly = true;
             this.awayPitcherStats.Size = new System.Drawing.Size(83, 90);
             this.awayPitcherStats.TabIndex = 16;
+            this.awayPitcherStats.TabStop = false;
             this.awayPitcherStats.Text = " \n \n \n ";
             // 
             // outOneOutline
@@ -330,6 +346,7 @@
             this.countInfo.ReadOnly = true;
             this.countInfo.Size = new System.Drawing.Size(116, 122);
             this.countInfo.TabIndex = 19;
+            this.countInfo.TabStop = false;
             this.countInfo.Text = "Balls\nStrikes\nOuts";
             // 
             // ballThreeOutline
@@ -515,6 +532,7 @@
             this.homeScore.ReadOnly = true;
             this.homeScore.Size = new System.Drawing.Size(80, 73);
             this.homeScore.TabIndex = 38;
+            this.homeScore.TabStop = false;
             this.homeScore.Text = "0";
             this.homeScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -529,6 +547,7 @@
             this.awayScore.ReadOnly = true;
             this.awayScore.Size = new System.Drawing.Size(80, 73);
             this.awayScore.TabIndex = 40;
+            this.awayScore.TabStop = false;
             this.awayScore.Text = "0";
             this.awayScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -545,6 +564,7 @@
             this.gameLog.ReadOnly = true;
             this.gameLog.Size = new System.Drawing.Size(247, 103);
             this.gameLog.TabIndex = 41;
+            this.gameLog.TabStop = false;
             this.gameLog.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // inningText
@@ -558,6 +578,7 @@
             this.inningText.ReadOnly = true;
             this.inningText.Size = new System.Drawing.Size(271, 37);
             this.inningText.TabIndex = 42;
+            this.inningText.TabStop = false;
             this.inningText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // batterText
@@ -570,6 +591,7 @@
             this.batterText.ReadOnly = true;
             this.batterText.Size = new System.Drawing.Size(482, 31);
             this.batterText.TabIndex = 43;
+            this.batterText.TabStop = false;
             this.batterText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // pitcherText
@@ -582,6 +604,8 @@
             this.pitcherText.ReadOnly = true;
             this.pitcherText.Size = new System.Drawing.Size(482, 31);
             this.pitcherText.TabIndex = 44;
+            this.pitcherText.TabStop = false;
+            this.pitcherText.Text = "Click \"Start New Match\" to start a match";
             this.pitcherText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // scoreText
@@ -597,14 +621,34 @@
             this.scoreText.ReadOnly = true;
             this.scoreText.Size = new System.Drawing.Size(247, 71);
             this.scoreText.TabIndex = 45;
+            this.scoreText.TabStop = false;
             this.scoreText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.scoreText.Visible = false;
+            // 
+            // seedText
+            // 
+            this.seedText.Location = new System.Drawing.Point(853, 120);
+            this.seedText.Name = "seedText";
+            this.seedText.Size = new System.Drawing.Size(291, 20);
+            this.seedText.TabIndex = 46;
+            this.seedText.Text = "Enter Seed Here";
+            this.seedText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // stepLabel
+            // 
+            this.stepLabel.AutoSize = true;
+            this.stepLabel.Location = new System.Drawing.Point(470, 160);
+            this.stepLabel.Name = "stepLabel";
+            this.stepLabel.Size = new System.Drawing.Size(0, 13);
+            this.stepLabel.TabIndex = 47;
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1194, 638);
+            this.Controls.Add(this.stepLabel);
+            this.Controls.Add(this.seedText);
             this.Controls.Add(this.scoreText);
             this.Controls.Add(this.pitcherText);
             this.Controls.Add(this.batterText);
@@ -720,5 +764,7 @@
         private System.Windows.Forms.TextBox pitcherText;
         private System.Windows.Forms.TextBox homeTeamText;
         private System.Windows.Forms.TextBox scoreText;
+        private System.Windows.Forms.TextBox seedText;
+        private System.Windows.Forms.Label stepLabel;
     }
 }

@@ -10,12 +10,14 @@ namespace FinalProject
     {
         #region variables
         private string _teamName;
-        private double _pitcherLimit;
+        private double pitcherLimit = 1;
         private Batter[] _batterList = new Batter[10];
         private Pitcher[] _pitcherList = new Pitcher[5];
         private int _batterIndex = 0;
         private int _pitcherIndex = 0;
         private int _score = 0;
+        private Pitcher activePitcher;
+        private Match currentMatch;
         #endregion
 
         #region location and mascot database
@@ -32,10 +34,11 @@ namespace FinalProject
         #endregion
 
         #region constructors
-        public Team( )
+        public Team( Match match)
         {
-            _teamName = teamLocationDB[Match.GetRandomInt(teamLocationDB.Length)] + " " +
-                teamMascotDB[Match.GetRandomInt(teamMascotDB.Length)];
+            currentMatch = match;
+            _teamName = teamLocationDB[currentMatch.GetRandomInt(teamLocationDB.Length)] + " " +
+                teamMascotDB[currentMatch.GetRandomInt(teamMascotDB.Length)];
             FillTeam();
         }
 
@@ -48,7 +51,6 @@ namespace FinalProject
 
         #region properties
         public string teamName { get { return _teamName; } set { _teamName = value; } }
-        public double pitcherLimit { get { return _pitcherLimit; } set { _pitcherLimit = value; } }
         public int score { get { return _score; } set { _score = value; } }
         public int batterIndex
         {
@@ -64,9 +66,9 @@ namespace FinalProject
         public int pitcherIndex { 
             get 
             {
+                if (_pitcherIndex >= 4)
+                    _pitcherIndex = 0;
                 _pitcherIndex++;
-                if (_pitcherIndex > 4)
-                    _pitcherIndex = 1;
                 return _pitcherIndex; 
             }
             set { _pitcherIndex = value; } }
@@ -85,6 +87,11 @@ namespace FinalProject
 
         public Pitcher GetCurrentPitcher()
         {
+            if ( pitcherLimit  >= 1)
+            {
+                activePitcher = _pitcherList[pitcherIndex];
+                pitcherLimit = 0;
+            }
             return _pitcherList[_pitcherIndex];
         }
 
@@ -93,13 +100,13 @@ namespace FinalProject
             //Console.WriteLine("Batters for the " + _teamName + ":");
             for (int k = 1; k <= 9; k++)
             {
-                _batterList[k] = new Batter();
+                _batterList[k] = new Batter( currentMatch );
             }
 
             //Console.WriteLine("Pitchers for the " + _teamName + ":");
             for (int k = 1; k <= 4; k++)
             {
-                _pitcherList[k] = new Pitcher();
+                _pitcherList[k] = new Pitcher( currentMatch );
             }
         }
 

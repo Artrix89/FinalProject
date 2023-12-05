@@ -10,19 +10,17 @@ namespace FinalProject
     {
         #region variables
         private double _earnedRunAverage;
-        private double _hitBallChance;
         private double _burnout;
         #endregion
 
-        public Pitcher()
+        public Pitcher( Match match) : base( match )
         {
             _earnedRunAverage = 0;
             for(int i = 0; i < 15; i++) 
             {
-                _earnedRunAverage += Match.GetRandomDouble() / 16.875;
+                _earnedRunAverage += match.GetRandomDouble() / 16.875;
             }
             _earnedRunAverage = Math.Round(_earnedRunAverage, 3);
-            //Console.WriteLine("ERA: " + earnedRunAverage);
         }
 
         #region properties
