@@ -14,8 +14,8 @@ namespace FinalProject
 {
     public partial class MainWindow : Form
     {
-        Match currentMatch;
-        int step;
+        private Match currentMatch;
+        private int step;
 
         public MainWindow()
         {
@@ -226,6 +226,7 @@ namespace FinalProject
         public void EndGame()
         {
             currentMatch = null;
+            seedText.ReadOnly = false;
         }
 
         #endregion

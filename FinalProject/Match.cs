@@ -193,7 +193,7 @@ namespace FinalProject
             SimulatePitch();
         }
 
-        private void SimulatePitch()
+        private void SimulatePitch() //needs changing, era should work the other way
         {
             double pitch = GetRandomDouble();
             if (pitch > (currentPitcher.earnedRunAverage / 9) + .4 - currentBatter.hittingPercentage) //Hit
@@ -340,7 +340,7 @@ namespace FinalProject
                 }
                 if (_onBase[2] != null)
                 {
-                    UI.WriteToScore("\n" + _onBase[2].name + " scores!");
+                    UI.WriteToScore(Environment.NewLine + _onBase[2].name + " scores!");
                     battingTeam.score++;
                 }
                 UI.UpdateScore(_homeTeam.score, _awayTeam.score);
@@ -358,12 +358,12 @@ namespace FinalProject
                 }
                 if (_onBase[2] != null)
                 {
-                    UI.WriteToScore("\n" + _onBase[2].name + " scores!");
+                    UI.WriteToScore(Environment.NewLine + _onBase[2].name + " scores!");
                     battingTeam.score++;
                 }
                 if (_onBase[1] != null)
                 {
-                    UI.WriteToScore("\n" + _onBase[1].name + " scores!");
+                    UI.WriteToScore(Environment.NewLine + _onBase[1].name + " scores!");
                     battingTeam.score++;
                 }
                 UI.UpdateScore(_homeTeam.score, _awayTeam.score);
@@ -374,23 +374,23 @@ namespace FinalProject
             else // home run
             {
                 UI.WriteToLog(currentBatter.name + " hits a home run!");
+                UI.WriteToScore(currentBatter.name + " scores!");
+                battingTeam.score++;
                 if (_onBase[3] != null)
                 {
-                    UI.WriteToScore(_onBase[3].name + " scores!");
+                    UI.WriteToScore(Environment.NewLine + _onBase[3].name + " scores!");
                     battingTeam.score++;
                 }
                 if (_onBase[2] != null)
                 {
-                    UI.WriteToScore("\n" + _onBase[2].name + " scores!");
+                    UI.WriteToScore(Environment.NewLine + _onBase[2].name + " scores!");
                     battingTeam.score++;
                 }
                 if (_onBase[1] != null)
                 {
-                    UI.WriteToScore("\n" + _onBase[1].name + " scores!");
+                    UI.WriteToScore(Environment.NewLine + _onBase[1].name + " scores!");
                     battingTeam.score++;
                 }
-                UI.WriteToScore("\n" + currentBatter.name + " scores!");
-                battingTeam.score++;
                 UI.UpdateScore(_homeTeam.score, _awayTeam.score);
                 _onBase[3] = null;
                 _onBase[2] = null;

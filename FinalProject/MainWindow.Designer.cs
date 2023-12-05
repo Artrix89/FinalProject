@@ -615,11 +615,11 @@
             this.scoreText.Cursor = System.Windows.Forms.Cursors.Default;
             this.scoreText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scoreText.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.scoreText.Location = new System.Drawing.Point(473, 274);
+            this.scoreText.Location = new System.Drawing.Point(473, 248);
             this.scoreText.Multiline = true;
             this.scoreText.Name = "scoreText";
             this.scoreText.ReadOnly = true;
-            this.scoreText.Size = new System.Drawing.Size(247, 71);
+            this.scoreText.Size = new System.Drawing.Size(247, 97);
             this.scoreText.TabIndex = 45;
             this.scoreText.TabStop = false;
             this.scoreText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
