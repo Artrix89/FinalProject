@@ -14,6 +14,7 @@ namespace FinalProject
         private double _hittingPercentage;
         #endregion
 
+        #region constructors 
         public Batter( Match match ) : base( match )
         {
             _battingPercentage = 0;
@@ -26,11 +27,19 @@ namespace FinalProject
             _hittingPercentage = _battingPercentage * .25;
         }
 
+        public Batter( string name, double stat ) : base( name )
+        {
+            _battingPercentage = stat;
+            _battingPercentage = Math.Round(_battingPercentage, 3);
+
+            _hittingPercentage = _battingPercentage * .25;
+        }
+        #endregion
+
         #region properties
         public double battingPercentage { get { return _battingPercentage; } set { _battingPercentage = value; } }
         public double hittingPercentage { get { return _hittingPercentage; } set { _hittingPercentage = value; } }
         #endregion
-
 
     }
 }

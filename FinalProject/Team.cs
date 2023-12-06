@@ -16,8 +16,6 @@ namespace FinalProject
         private int _batterIndex = 0;
         private int _pitcherIndex = 0;
         private int _score = 0;
-        private Pitcher activePitcher;
-        private Match currentMatch;
         #endregion
 
         #region location and mascot database
@@ -36,16 +34,16 @@ namespace FinalProject
         #region constructors
         public Team( Match match)
         {
-            currentMatch = match;
-            _teamName = teamLocationDB[currentMatch.GetRandomInt(teamLocationDB.Length)] + " " +
-                teamMascotDB[currentMatch.GetRandomInt(teamMascotDB.Length)];
-            FillTeam();
+            _teamName = teamLocationDB[match.GetRandomInt(teamLocationDB.Length)] + " " +
+                teamMascotDB[match.GetRandomInt(teamMascotDB.Length)];
+            FillTeam( match );
         }
 
-        public Team(string name)
+        public Team( string name, string[] batters, double[] batterStats, string[] pitchers, double[] pitcherStats)
         {
             _teamName = name;
-            FillTeam();            
+
+            FillTeam( batters, batterStats, pitchers, pitcherStats );            
         }
         #endregion
 
@@ -74,7 +72,7 @@ namespace FinalProject
             set { _pitcherIndex = value; } }
         #endregion
 
-
+        #region name returning functs
         public Batter GetCurrentBatter( )
         {
             return _batterList[batterIndex];
@@ -89,30 +87,39 @@ namespace FinalProject
         {
             if ( pitcherLimit  >= 1)
             {
-                activePitcher = _pitcherList[pitcherIndex];
-                pitcherLimit = 0;
+                _pitcherIndex = 1;
             }
             return _pitcherList[_pitcherIndex];
         }
+        #endregion
 
-        private void FillTeam()
+        #region fill team functions
+        private void FillTeam( Match match )
         {
-            //Console.WriteLine("Batters for the " + _teamName + ":");
             for (int k = 1; k <= 9; k++)
             {
-                _batterList[k] = new Batter( currentMatch );
+                _batterList[k] = new Batter( match );
             }
 
-            //Console.WriteLine("Pitchers for the " + _teamName + ":");
             for (int k = 1; k <= 4; k++)
             {
-                _pitcherList[k] = new Pitcher( currentMatch );
+                _pitcherList[k] = new Pitcher( match );
             }
         }
 
-        public bool CheckForPullPitcher()
+        private void FillTeam( string[] batter, double[] batterStats, string[] pitcher, double[] pitcherStats )
         {
-            throw new NotImplementedException();
+            for (int k = 1; k <= 9; k++)
+            {
+                _batterList[k] = new Batter(batter[k-1], batterStats[k-1]);
+            }
+
+            for (int k = 1; k <= 4; k++)
+            {
+                _pitcherList[k] = new Pitcher(pitcher[k-1], pitcherStats[k-1]);
+            }
         }
+        #endregion
+
     }
 }

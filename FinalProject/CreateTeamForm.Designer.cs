@@ -319,6 +319,7 @@
             this.Controls.Add(this.HomeBatterNames);
             this.Name = "CreateTeamForm";
             this.Text = "CreateTeamForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateTeamForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

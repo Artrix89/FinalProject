@@ -14,9 +14,11 @@ namespace FinalProject
 {
     public partial class MainWindow : Form
     {
+        #region variables
         private Match currentMatch;
         private int step;
         private Form teamForm;
+        #endregion
 
         public MainWindow()
         {
@@ -24,7 +26,7 @@ namespace FinalProject
         }
 
         #region UI updating
-        private void InitializeUIElements()
+        private void InitializeUIElements() //called at beginning to set names and stats for each team
         {
             homeTeamText.Text = currentMatch.homeTeam;
             awayTeamText.Text = currentMatch.awayTeam;
@@ -51,7 +53,7 @@ namespace FinalProject
             }
         }
 
-        private void changeLine(RichTextBox RTB, int line, string text)
+        private void changeLine(RichTextBox RTB, int line, string text) //helper function for InitializeUIElements
         {
             int s1 = RTB.GetFirstCharIndexFromLine(line);
             int s2 = line < RTB.Lines.Count() - 1 ?
@@ -61,7 +63,7 @@ namespace FinalProject
             RTB.SelectedText = text;
         }
 
-        public void WriteToLog(string text)
+        public void WriteToLog(string text) //called from match to set log text
         {
             gameLog.Invoke((MethodInvoker)(() => { 
                 gameLog.Text = text;
@@ -70,7 +72,7 @@ namespace FinalProject
             }));
         }
 
-        public async void WriteToScore(string text) 
+        public async void WriteToScore(string text) //called from match to write whenever a player/players score
         {
             scoreText.Invoke((MethodInvoker)(() => {
                 scoreText.Visible = true;
@@ -84,7 +86,7 @@ namespace FinalProject
 
         }
 
-        public void UpdateScore( int homePoints, int awayPoints )
+        public void UpdateScore( int homePoints, int awayPoints ) //called from match
         {
             homeScore.Invoke((MethodInvoker)(() => {
                 homeScore.Text = Convert.ToString(homePoints);
@@ -92,7 +94,7 @@ namespace FinalProject
             }));
         }
 
-        public void ChangeHalf( string inning, bool isBottom )
+        public void ChangeHalf( string inning, bool isBottom ) //called from match to handle inning text and batter/pitcher changes
         {
             if ( isBottom )
             {
@@ -113,7 +115,7 @@ namespace FinalProject
             }
         }
 
-        public void UpdateCurrentPlayers( string batter, string pitcher )
+        public void UpdateCurrentPlayers( string batter, string pitcher ) // called from match to update current batter
         {
             batterText.Invoke((MethodInvoker)(() => {
                 batterText.Text = "Batting: " + batter;
@@ -232,6 +234,7 @@ namespace FinalProject
 
         #endregion
 
+        #region button functions
         private void startNewButton_Click(object sender, EventArgs e)
         {
             if (currentMatch != null)
@@ -257,7 +260,7 @@ namespace FinalProject
             bool success = int.TryParse( seedText.Text, out seed );
             if ( success )
             {
-                currentMatch = new Match(this);
+                currentMatch = new Match(this, seed);
                 seedText.ReadOnly = true;
                 InitializeUIElements();
                 step = 1;
@@ -277,14 +280,16 @@ namespace FinalProject
             }
             if (teamForm != null)
             {
-                System.Windows.MessageBox.Show("Form is already open");
+                System.Windows.MessageBox.Show("Form was already opened");
                 return;
             }
 
             teamForm = new CreateTeamForm( this );
             teamForm.Show();
         }
+        #endregion
 
+        #region custom game functions
         public void TeamFormClose()
         { teamForm = null; }
 
@@ -296,11 +301,17 @@ namespace FinalProject
                 return false;
         }
 
-        public void CreateCustomGame( string homeName, string[] homeBatters, int[] homeBatterStats, string[] homePitchers, int[] homePitcherStats,
-            string awayName, string[] awayBatters, int[] awayBatterStats, string[] awayPitchers, int[] awayPitcherStats)
+        public void CreateCustomGame( string homeName, string[] homeBatters, double[] homeBatterStats, string[] homePitchers, double[] homePitcherStats,
+            string awayName, string[] awayBatters, double[] awayBatterStats, string[] awayPitchers, double[] awayPitcherStats)
         {
+            step = 1;
+            currentMatch = new Match(this, homeName, homeBatters, homeBatterStats, homePitchers, homePitcherStats,
+                awayName, awayBatters, awayBatterStats, awayPitchers, awayPitcherStats);
 
+            seedText.ReadOnly = true;
+            InitializeUIElements();
         }
+        #endregion
 
     }
 }

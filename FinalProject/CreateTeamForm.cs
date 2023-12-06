@@ -12,15 +12,19 @@ namespace FinalProject
 {
     public partial class CreateTeamForm : Form
     {
+        #region variables
         MainWindow returnForm;
+        #endregion
+
         public CreateTeamForm( MainWindow form)
         {
             InitializeComponent();
             returnForm = form;
         }
 
-        private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
-        { 
+        #region methods
+        private void CreateTeamForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
             returnForm.TeamFormClose();
         }
 
@@ -35,10 +39,56 @@ namespace FinalProject
             if (ValidateTextBoxes())
                 return;
 
+            double[] hBatterStats = new double[9];
+            double[] hPitcherStats = new double[4];
+            double[] aBatterStats = new double[9];
+            double[] aPitcherStats = new double[4];
+            double tmp;
+            bool success;
 
+            // Change Lines for stats into actual numbers
+            for (int i = 0; i < 9; i++)
+            {
+                success = double.TryParse(HomeBatterStats.Lines[i], out tmp);
+                if (success && tmp >= .1 && tmp <= .5)
+                { hBatterStats[i] = tmp; }
+                else
+                { 
+                    System.Windows.MessageBox.Show("Please enter a valid stat number for the batters!");
+                    return;
+                }
+                success = double.TryParse(AwayBatterStats.Lines[i], out tmp);
+                if (success && tmp >= .1 && tmp <= .5)
+                { aBatterStats[i] = tmp; }
+                else
+                { 
+                    System.Windows.MessageBox.Show("Please enter a valid stat number for the batters!");
+                    return;
+                }
+            }
 
-            //returnForm.CreateCustomGame(HomeTeamText.Text, HomeBatterNames.Lines, HomeBatterStats.Lines, HomePitcherNames.Lines, HomePitcherStats.Lines,
-            //AwayTeamText.Text, AwayBatterNames.Lines, AwayBatterStats.Lines, AwayPitcherNames.Lines, AwayPitcherStats.Lines);
+            for (int i = 0; i < 4; i++)
+            {
+                success = double.TryParse(HomePitcherStats.Lines[i], out tmp);
+                if (success && tmp >= 1 && tmp <= 7)
+                { hPitcherStats[i] = tmp; }
+                else
+                { 
+                    System.Windows.MessageBox.Show("Please enter a valid stat number for the pitchers!");
+                    return;
+                }
+                success = double.TryParse(AwayPitcherStats.Lines[i], out tmp);
+                if (success && tmp >= 1 && tmp <= 7)
+                { aPitcherStats[i] = tmp; }
+                else
+                { 
+                    System.Windows.MessageBox.Show("Please enter a valid stat number for the pitchers!");
+                    return;
+                }
+            }
+
+            returnForm.CreateCustomGame(HomeTeamText.Text, HomeBatterNames.Lines, hBatterStats, HomePitcherNames.Lines, hPitcherStats,
+                AwayTeamText.Text, AwayBatterNames.Lines, aBatterStats, AwayPitcherNames.Lines, aPitcherStats);
 
             Close();
         }
@@ -106,6 +156,6 @@ namespace FinalProject
 
             return false;
         }
-
+        #endregion
     }
 }

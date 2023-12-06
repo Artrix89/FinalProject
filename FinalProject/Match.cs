@@ -60,6 +60,23 @@ namespace FinalProject
             timer.Enabled = true;
         }
 
+        public Match( MainWindow ui, 
+            string homeName, string[] homeBatters, double[] homeBatterStats, string[] homePitchers, double[] homePitcherStats,
+            string awayName, string[] awayBatters, double[] awayBatterStats, string[] awayPitchers, double[] awayPitcherStats)
+        {
+            randomNum = new Random();
+            _homeTeam = new Team(homeName, homeBatters, homeBatterStats, homePitchers, homePitcherStats);
+            _awayTeam = new Team(awayName, awayBatters, awayBatterStats, awayPitchers, awayPitcherStats);
+
+            UI = ui;
+            UI.UpdateScore(_homeTeam.score, _awayTeam.score);
+
+            ChangeHalf();
+            timer.Elapsed += OnTimerElapsed;
+            timer.AutoReset = true;
+            timer.Enabled = true;
+        }
+
         #endregion
 
         private void OnTimerElapsed(object sender, ElapsedEventArgs e)
@@ -89,10 +106,6 @@ namespace FinalProject
 
                 case 5: //Every hit ball, Queues 1 or 0 depending on outs
                     GetHitBall();
-                    break;
-
-                default: 
-                    UI.WriteToLog("Something went wrong, last code was " +  nextStep);
                     break;
 
             }

@@ -19,13 +19,18 @@ namespace FinalProject
             "Telephone", "Jokes", "Haynes", "Gonzales", "Pothos", "Cervantes", "Dogwalker", "O'Brian"};
         #endregion
 
+        #region constructors
         public Player( Match match)
         {
             _name = firstNameDB[match.GetRandomInt(firstNameDB.Length)] + " " +
                 lastNameDB[match.GetRandomInt(lastNameDB.Length)];
-
-            //Console.WriteLine("Name: " +  _name);
         }
+
+        public Player(string name)
+        {
+            _name = name;
+        }
+        #endregion
 
         #region properties
         public string name { get { return _name; } set { _name = value; } }
