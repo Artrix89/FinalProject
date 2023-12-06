@@ -16,6 +16,7 @@ namespace FinalProject
     {
         private Match currentMatch;
         private int step;
+        private Form teamForm;
 
         public MainWindow()
         {
@@ -266,5 +267,40 @@ namespace FinalProject
                 System.Windows.MessageBox.Show("Please enter a valid seed number!");
             }
         }
+
+        private void MakeTeams_Click(object sender, EventArgs e)
+        {
+            if (currentMatch != null)
+            {
+                System.Windows.MessageBox.Show("Match already exists!");
+                return;
+            }
+            if (teamForm != null)
+            {
+                System.Windows.MessageBox.Show("Form is already open");
+                return;
+            }
+
+            teamForm = new CreateTeamForm( this );
+            teamForm.Show();
+        }
+
+        public void TeamFormClose()
+        { teamForm = null; }
+
+        public bool IsGameRunning()
+        {
+            if (currentMatch != null)
+                return true;
+            else
+                return false;
+        }
+
+        public void CreateCustomGame( string homeName, string[] homeBatters, int[] homeBatterStats, string[] homePitchers, int[] homePitcherStats,
+            string awayName, string[] awayBatters, int[] awayBatterStats, string[] awayPitchers, int[] awayPitcherStats)
+        {
+
+        }
+
     }
 }

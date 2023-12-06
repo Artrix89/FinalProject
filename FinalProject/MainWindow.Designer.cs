@@ -75,6 +75,7 @@
             this.scoreText = new System.Windows.Forms.TextBox();
             this.seedText = new System.Windows.Forms.TextBox();
             this.stepLabel = new System.Windows.Forms.Label();
+            this.MakeTeams = new System.Windows.Forms.Button();
             homeBatterHeader = new System.Windows.Forms.TextBox();
             homePitcherHeader = new System.Windows.Forms.TextBox();
             awayBatterHeader = new System.Windows.Forms.TextBox();
@@ -320,7 +321,7 @@
             // outOneOutline
             // 
             this.outOneOutline.Image = ((System.Drawing.Image)(resources.GetObject("outOneOutline.Image")));
-            this.outOneOutline.Location = new System.Drawing.Point(690, 561);
+            this.outOneOutline.Location = new System.Drawing.Point(599, 498);
             this.outOneOutline.Name = "outOneOutline";
             this.outOneOutline.Size = new System.Drawing.Size(30, 30);
             this.outOneOutline.TabIndex = 17;
@@ -329,7 +330,7 @@
             // outTwoOutline
             // 
             this.outTwoOutline.Image = ((System.Drawing.Image)(resources.GetObject("outTwoOutline.Image")));
-            this.outTwoOutline.Location = new System.Drawing.Point(654, 561);
+            this.outTwoOutline.Location = new System.Drawing.Point(563, 498);
             this.outTwoOutline.Name = "outTwoOutline";
             this.outTwoOutline.Size = new System.Drawing.Size(30, 30);
             this.outTwoOutline.TabIndex = 18;
@@ -341,7 +342,7 @@
             this.countInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.countInfo.Cursor = System.Windows.Forms.Cursors.Default;
             this.countInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 23.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.countInfo.Location = new System.Drawing.Point(459, 489);
+            this.countInfo.Location = new System.Drawing.Point(368, 426);
             this.countInfo.Name = "countInfo";
             this.countInfo.ReadOnly = true;
             this.countInfo.Size = new System.Drawing.Size(116, 122);
@@ -352,7 +353,7 @@
             // ballThreeOutline
             // 
             this.ballThreeOutline.Image = ((System.Drawing.Image)(resources.GetObject("ballThreeOutline.Image")));
-            this.ballThreeOutline.Location = new System.Drawing.Point(618, 489);
+            this.ballThreeOutline.Location = new System.Drawing.Point(527, 426);
             this.ballThreeOutline.Name = "ballThreeOutline";
             this.ballThreeOutline.Size = new System.Drawing.Size(30, 30);
             this.ballThreeOutline.TabIndex = 20;
@@ -361,7 +362,7 @@
             // ballTwoOutline
             // 
             this.ballTwoOutline.Image = ((System.Drawing.Image)(resources.GetObject("ballTwoOutline.Image")));
-            this.ballTwoOutline.Location = new System.Drawing.Point(654, 489);
+            this.ballTwoOutline.Location = new System.Drawing.Point(563, 426);
             this.ballTwoOutline.Name = "ballTwoOutline";
             this.ballTwoOutline.Size = new System.Drawing.Size(30, 30);
             this.ballTwoOutline.TabIndex = 21;
@@ -370,7 +371,7 @@
             // ballOneOutline
             // 
             this.ballOneOutline.Image = ((System.Drawing.Image)(resources.GetObject("ballOneOutline.Image")));
-            this.ballOneOutline.Location = new System.Drawing.Point(690, 489);
+            this.ballOneOutline.Location = new System.Drawing.Point(599, 426);
             this.ballOneOutline.Name = "ballOneOutline";
             this.ballOneOutline.Size = new System.Drawing.Size(30, 30);
             this.ballOneOutline.TabIndex = 22;
@@ -379,7 +380,7 @@
             // strikeOneOutline
             // 
             this.strikeOneOutline.Image = ((System.Drawing.Image)(resources.GetObject("strikeOneOutline.Image")));
-            this.strikeOneOutline.Location = new System.Drawing.Point(690, 525);
+            this.strikeOneOutline.Location = new System.Drawing.Point(599, 462);
             this.strikeOneOutline.Name = "strikeOneOutline";
             this.strikeOneOutline.Size = new System.Drawing.Size(30, 30);
             this.strikeOneOutline.TabIndex = 23;
@@ -388,7 +389,7 @@
             // strikeTwoOutline
             // 
             this.strikeTwoOutline.Image = ((System.Drawing.Image)(resources.GetObject("strikeTwoOutline.Image")));
-            this.strikeTwoOutline.Location = new System.Drawing.Point(654, 525);
+            this.strikeTwoOutline.Location = new System.Drawing.Point(563, 462);
             this.strikeTwoOutline.Name = "strikeTwoOutline";
             this.strikeTwoOutline.Size = new System.Drawing.Size(30, 30);
             this.strikeTwoOutline.TabIndex = 24;
@@ -397,7 +398,7 @@
             // ballOne
             // 
             this.ballOne.Image = ((System.Drawing.Image)(resources.GetObject("ballOne.Image")));
-            this.ballOne.Location = new System.Drawing.Point(690, 489);
+            this.ballOne.Location = new System.Drawing.Point(599, 426);
             this.ballOne.Name = "ballOne";
             this.ballOne.Size = new System.Drawing.Size(30, 30);
             this.ballOne.TabIndex = 25;
@@ -407,7 +408,7 @@
             // ballTwo
             // 
             this.ballTwo.Image = ((System.Drawing.Image)(resources.GetObject("ballTwo.Image")));
-            this.ballTwo.Location = new System.Drawing.Point(654, 489);
+            this.ballTwo.Location = new System.Drawing.Point(563, 426);
             this.ballTwo.Name = "ballTwo";
             this.ballTwo.Size = new System.Drawing.Size(30, 30);
             this.ballTwo.TabIndex = 26;
@@ -417,7 +418,7 @@
             // strikeTwo
             // 
             this.strikeTwo.Image = ((System.Drawing.Image)(resources.GetObject("strikeTwo.Image")));
-            this.strikeTwo.Location = new System.Drawing.Point(654, 525);
+            this.strikeTwo.Location = new System.Drawing.Point(563, 462);
             this.strikeTwo.Name = "strikeTwo";
             this.strikeTwo.Size = new System.Drawing.Size(30, 30);
             this.strikeTwo.TabIndex = 27;
@@ -427,7 +428,7 @@
             // ballThree
             // 
             this.ballThree.Image = ((System.Drawing.Image)(resources.GetObject("ballThree.Image")));
-            this.ballThree.Location = new System.Drawing.Point(618, 489);
+            this.ballThree.Location = new System.Drawing.Point(527, 426);
             this.ballThree.Name = "ballThree";
             this.ballThree.Size = new System.Drawing.Size(30, 30);
             this.ballThree.TabIndex = 28;
@@ -437,7 +438,7 @@
             // strikeOne
             // 
             this.strikeOne.Image = ((System.Drawing.Image)(resources.GetObject("strikeOne.Image")));
-            this.strikeOne.Location = new System.Drawing.Point(690, 525);
+            this.strikeOne.Location = new System.Drawing.Point(599, 462);
             this.strikeOne.Name = "strikeOne";
             this.strikeOne.Size = new System.Drawing.Size(30, 30);
             this.strikeOne.TabIndex = 29;
@@ -447,7 +448,7 @@
             // outOne
             // 
             this.outOne.Image = ((System.Drawing.Image)(resources.GetObject("outOne.Image")));
-            this.outOne.Location = new System.Drawing.Point(690, 561);
+            this.outOne.Location = new System.Drawing.Point(599, 498);
             this.outOne.Name = "outOne";
             this.outOne.Size = new System.Drawing.Size(30, 30);
             this.outOne.TabIndex = 30;
@@ -457,7 +458,7 @@
             // outTwo
             // 
             this.outTwo.Image = ((System.Drawing.Image)(resources.GetObject("outTwo.Image")));
-            this.outTwo.Location = new System.Drawing.Point(654, 561);
+            this.outTwo.Location = new System.Drawing.Point(563, 498);
             this.outTwo.Name = "outTwo";
             this.outTwo.Size = new System.Drawing.Size(30, 30);
             this.outTwo.TabIndex = 31;
@@ -467,7 +468,7 @@
             // baseThreeOutline
             // 
             this.baseThreeOutline.Image = ((System.Drawing.Image)(resources.GetObject("baseThreeOutline.Image")));
-            this.baseThreeOutline.Location = new System.Drawing.Point(515, 403);
+            this.baseThreeOutline.Location = new System.Drawing.Point(659, 478);
             this.baseThreeOutline.Name = "baseThreeOutline";
             this.baseThreeOutline.Size = new System.Drawing.Size(60, 60);
             this.baseThreeOutline.TabIndex = 32;
@@ -476,7 +477,7 @@
             // baseTwoOutline
             // 
             this.baseTwoOutline.Image = ((System.Drawing.Image)(resources.GetObject("baseTwoOutline.Image")));
-            this.baseTwoOutline.Location = new System.Drawing.Point(567, 351);
+            this.baseTwoOutline.Location = new System.Drawing.Point(711, 426);
             this.baseTwoOutline.Name = "baseTwoOutline";
             this.baseTwoOutline.Size = new System.Drawing.Size(60, 60);
             this.baseTwoOutline.TabIndex = 33;
@@ -485,7 +486,7 @@
             // baseOneOutline
             // 
             this.baseOneOutline.Image = ((System.Drawing.Image)(resources.GetObject("baseOneOutline.Image")));
-            this.baseOneOutline.Location = new System.Drawing.Point(618, 403);
+            this.baseOneOutline.Location = new System.Drawing.Point(762, 478);
             this.baseOneOutline.Name = "baseOneOutline";
             this.baseOneOutline.Size = new System.Drawing.Size(60, 60);
             this.baseOneOutline.TabIndex = 34;
@@ -494,7 +495,7 @@
             // baseOne
             // 
             this.baseOne.Image = ((System.Drawing.Image)(resources.GetObject("baseOne.Image")));
-            this.baseOne.Location = new System.Drawing.Point(618, 403);
+            this.baseOne.Location = new System.Drawing.Point(762, 478);
             this.baseOne.Name = "baseOne";
             this.baseOne.Size = new System.Drawing.Size(60, 60);
             this.baseOne.TabIndex = 35;
@@ -504,7 +505,7 @@
             // baseTwo
             // 
             this.baseTwo.Image = ((System.Drawing.Image)(resources.GetObject("baseTwo.Image")));
-            this.baseTwo.Location = new System.Drawing.Point(567, 351);
+            this.baseTwo.Location = new System.Drawing.Point(711, 426);
             this.baseTwo.Name = "baseTwo";
             this.baseTwo.Size = new System.Drawing.Size(60, 60);
             this.baseTwo.TabIndex = 36;
@@ -514,7 +515,7 @@
             // baseThree
             // 
             this.baseThree.Image = ((System.Drawing.Image)(resources.GetObject("baseThree.Image")));
-            this.baseThree.Location = new System.Drawing.Point(515, 403);
+            this.baseThree.Location = new System.Drawing.Point(659, 478);
             this.baseThree.Name = "baseThree";
             this.baseThree.Size = new System.Drawing.Size(60, 60);
             this.baseThree.TabIndex = 37;
@@ -527,7 +528,7 @@
             this.homeScore.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.homeScore.Cursor = System.Windows.Forms.Cursors.Default;
             this.homeScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.homeScore.Location = new System.Drawing.Point(353, 160);
+            this.homeScore.Location = new System.Drawing.Point(353, 147);
             this.homeScore.Name = "homeScore";
             this.homeScore.ReadOnly = true;
             this.homeScore.Size = new System.Drawing.Size(80, 73);
@@ -542,7 +543,7 @@
             this.awayScore.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.awayScore.Cursor = System.Windows.Forms.Cursors.Default;
             this.awayScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.awayScore.Location = new System.Drawing.Point(755, 160);
+            this.awayScore.Location = new System.Drawing.Point(755, 147);
             this.awayScore.Name = "awayScore";
             this.awayScore.ReadOnly = true;
             this.awayScore.Size = new System.Drawing.Size(80, 73);
@@ -556,9 +557,9 @@
             this.gameLog.BackColor = System.Drawing.SystemColors.Control;
             this.gameLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gameLog.Cursor = System.Windows.Forms.Cursors.Default;
-            this.gameLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gameLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gameLog.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.gameLog.Location = new System.Drawing.Point(473, 181);
+            this.gameLog.Location = new System.Drawing.Point(473, 255);
             this.gameLog.Multiline = true;
             this.gameLog.Name = "gameLog";
             this.gameLog.ReadOnly = true;
@@ -573,7 +574,7 @@
             this.inningText.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.inningText.Cursor = System.Windows.Forms.Cursors.Default;
             this.inningText.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.inningText.Location = new System.Drawing.Point(459, 121);
+            this.inningText.Location = new System.Drawing.Point(459, 164);
             this.inningText.Name = "inningText";
             this.inningText.ReadOnly = true;
             this.inningText.Size = new System.Drawing.Size(271, 37);
@@ -585,7 +586,7 @@
             // 
             this.batterText.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.batterText.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.batterText.Location = new System.Drawing.Point(353, 71);
+            this.batterText.Location = new System.Drawing.Point(353, 595);
             this.batterText.Multiline = true;
             this.batterText.Name = "batterText";
             this.batterText.ReadOnly = true;
@@ -598,14 +599,13 @@
             // 
             this.pitcherText.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.pitcherText.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pitcherText.Location = new System.Drawing.Point(353, 34);
+            this.pitcherText.Location = new System.Drawing.Point(353, 558);
             this.pitcherText.Multiline = true;
             this.pitcherText.Name = "pitcherText";
             this.pitcherText.ReadOnly = true;
             this.pitcherText.Size = new System.Drawing.Size(482, 31);
             this.pitcherText.TabIndex = 44;
             this.pitcherText.TabStop = false;
-            this.pitcherText.Text = "Click \"Start New Match\" to start a match";
             this.pitcherText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // scoreText
@@ -613,9 +613,9 @@
             this.scoreText.BackColor = System.Drawing.SystemColors.Control;
             this.scoreText.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.scoreText.Cursor = System.Windows.Forms.Cursors.Default;
-            this.scoreText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scoreText.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scoreText.ForeColor = System.Drawing.SystemColors.MenuText;
-            this.scoreText.Location = new System.Drawing.Point(473, 248);
+            this.scoreText.Location = new System.Drawing.Point(473, 309);
             this.scoreText.Multiline = true;
             this.scoreText.Name = "scoreText";
             this.scoreText.ReadOnly = true;
@@ -637,16 +637,28 @@
             // stepLabel
             // 
             this.stepLabel.AutoSize = true;
-            this.stepLabel.Location = new System.Drawing.Point(470, 160);
+            this.stepLabel.Location = new System.Drawing.Point(782, 393);
             this.stepLabel.Name = "stepLabel";
             this.stepLabel.Size = new System.Drawing.Size(0, 13);
             this.stepLabel.TabIndex = 47;
+            // 
+            // MakeTeams
+            // 
+            this.MakeTeams.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MakeTeams.Location = new System.Drawing.Point(448, 34);
+            this.MakeTeams.Name = "MakeTeams";
+            this.MakeTeams.Size = new System.Drawing.Size(291, 80);
+            this.MakeTeams.TabIndex = 48;
+            this.MakeTeams.Text = "Create Teams";
+            this.MakeTeams.UseVisualStyleBackColor = true;
+            this.MakeTeams.Click += new System.EventHandler(this.MakeTeams_Click);
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1194, 638);
+            this.Controls.Add(this.MakeTeams);
             this.Controls.Add(this.stepLabel);
             this.Controls.Add(this.seedText);
             this.Controls.Add(this.scoreText);
@@ -766,5 +778,6 @@
         private System.Windows.Forms.TextBox scoreText;
         private System.Windows.Forms.TextBox seedText;
         private System.Windows.Forms.Label stepLabel;
+        private System.Windows.Forms.Button MakeTeams;
     }
 }
