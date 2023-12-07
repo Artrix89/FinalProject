@@ -293,6 +293,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(787, 356);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label12);
@@ -318,6 +320,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.HomeBatterNames);
             this.Name = "CreateTeamForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CreateTeamForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateTeamForm_FormClosed);
             this.ResumeLayout(false);
