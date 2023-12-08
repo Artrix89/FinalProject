@@ -36,10 +36,10 @@ namespace FinalProject
             {
                 tmpBatter = currentMatch.homeBatter;
                 changeLine(homeBatterText, i, tmpBatter.name);
-                changeLine(homeBatterStats, i, tmpBatter.battingPercentage.ToString("#.###" + " OPS"));
+                changeLine(homeBatterStats, i, tmpBatter.battingPercentage.ToString("#.###" + " OBP"));
                 tmpBatter = currentMatch.awayBatter;
                 changeLine(awayBatterText, i, tmpBatter.name);
-                changeLine(awayBatterStats, i, tmpBatter.battingPercentage.ToString("#.###" + " OPS"));
+                changeLine(awayBatterStats, i, tmpBatter.battingPercentage.ToString("#.###" + " OBP"));
             }
             Pitcher tmpPitcher;
             for (int i = 0; i < 4; i++)
@@ -228,8 +228,10 @@ namespace FinalProject
 
         public void EndGame()
         {
-            currentMatch = null;
-            seedText.ReadOnly = false;
+            seedText.Invoke((MethodInvoker)(() => {
+                currentMatch = null;
+                seedText.ReadOnly = false;
+            }));
         }
 
         #endregion

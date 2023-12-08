@@ -23,7 +23,7 @@ namespace FinalProject
         private Random randomNum;
         private Batter[] _onBase = new Batter[4];
         private MainWindow UI;
-        private Timer timer = new Timer(2000);
+        private Timer timer = new Timer(200);
         private Batter currentBatter;
         private Pitcher currentPitcher;
         private Queue<int> nextStep = new Queue<int>();
@@ -206,16 +206,15 @@ namespace FinalProject
             SimulatePitch();
         }
 
-        private void SimulatePitch() //needs changing, era should work the other way
+        private void SimulatePitch()
         {
             double pitch = GetRandomDouble();
-            if (pitch > (currentPitcher.earnedRunAverage / 9) + .4 - currentBatter.hittingPercentage) //Hit
+            if (pitch < (currentPitcher.earnedRunAverage / 9) - .3 + currentBatter.hittingPercentage) //Hit
                 nextStep.Enqueue(5);
             
 
-            else if (pitch > (currentPitcher.earnedRunAverage / 9) - currentBatter.hittingPercentage) //Ball
-                nextStep.Enqueue(3);
-            
+            else if (pitch < (currentPitcher.earnedRunAverage / 9) + currentBatter.hittingPercentage) //Ball
+                nextStep.Enqueue(3);            
 
             else //Strike            
                 nextStep.Enqueue(2);
@@ -297,7 +296,7 @@ namespace FinalProject
         {
             double tmp = GetRandomDouble();
 
-            if (tmp > .8)
+            if (tmp > .65 + currentBatter.battingPercentage)
             {
                 UI.WriteToLog(currentBatter.name + " hit a ground out");
                 outs++;
@@ -307,7 +306,7 @@ namespace FinalProject
                     return;
                 }
             }
-            else if (tmp > .6)
+            else if (tmp > .35 + currentBatter.battingPercentage)
             {
                 UI.WriteToLog(currentBatter.name + " hit a fly out");
                 outs++;
@@ -329,7 +328,7 @@ namespace FinalProject
         private void AdvanceBases()
         {
             double tmp = GetRandomDouble();
-            if (tmp < .5) // single
+            if (tmp < .65) // single
             {
                 UI.WriteToLog(currentBatter.name + " hits a single!");
                 if (_onBase[3] != null)
@@ -343,7 +342,7 @@ namespace FinalProject
                 _onBase[2] = _onBase[1];
                 _onBase[1] = currentBatter;
             }
-            else if (tmp < .7) // double
+            else if (tmp < .8) // double
             {
                 UI.WriteToLog(currentBatter.name + " hits a double!");
                 if (_onBase[3] != null)
@@ -361,7 +360,7 @@ namespace FinalProject
                 _onBase[2] = currentBatter;
                 _onBase[1] = null;
             }
-            else if (tmp < .85) // triple
+            else if (tmp < .9) // triple
             {
                 UI.WriteToLog(currentBatter.name + " hits a triple!");
                 if (_onBase[3] != null)
@@ -434,10 +433,6 @@ namespace FinalProject
         public int GetRandomInt( int max)
         {
             return randomNum.Next( max );
-        }
-        public int GetRandomInt()
-        {
-            return randomNum.Next();
         }
         #endregion
 
