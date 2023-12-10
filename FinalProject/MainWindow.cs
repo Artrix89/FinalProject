@@ -231,6 +231,10 @@ namespace FinalProject
             seedText.Invoke((MethodInvoker)(() => {
                 currentMatch = null;
                 seedText.ReadOnly = false;
+                UpdateBases( 0 );
+                UpdateBalls( 0 );
+                UpdateStrikes( 0 );
+                UpdateOuts(0);
             }));
         }
 

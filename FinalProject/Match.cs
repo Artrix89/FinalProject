@@ -23,7 +23,7 @@ namespace FinalProject
         private Random randomNum;
         private Batter[] _onBase = new Batter[4];
         private MainWindow UI;
-        private Timer timer = new Timer(200);
+        private Timer timer = new Timer(80);
         private Batter currentBatter;
         private Pitcher currentPitcher;
         private Queue<int> nextStep = new Queue<int>();
