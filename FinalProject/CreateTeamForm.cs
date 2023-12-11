@@ -102,18 +102,25 @@ namespace FinalProject
                 return true;
             }
 
-            for (int i = 0; i < 9; i++) //Check if batter name/stats are empty
+            try
             {
-                if (string.IsNullOrWhiteSpace(HomeBatterNames.Lines[i]) || string.IsNullOrWhiteSpace(AwayBatterNames.Lines[i]))
+                for (int i = 0; i < 9; i++) //Check if batter name/stats are empty
                 {
-                    MessageBox.Show("Batter Name may not be empty");
-                    return true;
+                    if (string.IsNullOrWhiteSpace(HomeBatterNames.Lines[i]) || string.IsNullOrWhiteSpace(AwayBatterNames.Lines[i]))
+                    {
+                        MessageBox.Show("Batter Name may not be empty");
+                        return true;
+                    }
+                    if (string.IsNullOrWhiteSpace(HomeBatterStats.Lines[i]) || string.IsNullOrWhiteSpace(AwayBatterStats.Lines[i]))
+                    {
+                        MessageBox.Show("Batter Stats may not be empty");
+                        return true;
+                    }
                 }
-                if (string.IsNullOrWhiteSpace(HomeBatterStats.Lines[i]) || string.IsNullOrWhiteSpace(AwayBatterStats.Lines[i]))
-                {
-                    MessageBox.Show("Batter Stats may not be empty");
-                    return true;
-                }
+            }
+            catch { 
+                MessageBox.Show("You must have 9 batters");
+                return true;
             }
 
             //Check if there are more than 9 batters
@@ -128,18 +135,26 @@ namespace FinalProject
                 return true;
             }
 
-            for (int i = 0; i < 4; i++) //Check if pitcher name/stats are empty
+            try
             {
-                if (string.IsNullOrWhiteSpace(HomePitcherNames.Lines[i]) || string.IsNullOrWhiteSpace(AwayPitcherNames.Lines[i]))
+                for (int i = 0; i < 4; i++) //Check if pitcher name/stats are empty
                 {
-                    MessageBox.Show("Batter Name may not be empty");
-                    return true;
+                    if (string.IsNullOrWhiteSpace(HomePitcherNames.Lines[i]) || string.IsNullOrWhiteSpace(AwayPitcherNames.Lines[i]))
+                    {
+                        MessageBox.Show("Batter Name may not be empty");
+                        return true;
+                    }
+                    if (string.IsNullOrWhiteSpace(HomePitcherStats.Lines[i]) || string.IsNullOrWhiteSpace(AwayPitcherStats.Lines[i]))
+                    {
+                        MessageBox.Show("Batter Stats may not be empty");
+                        return true;
+                    }
                 }
-                if (string.IsNullOrWhiteSpace(HomePitcherStats.Lines[i]) || string.IsNullOrWhiteSpace(AwayPitcherStats.Lines[i]))
-                {
-                    MessageBox.Show("Batter Stats may not be empty");
-                    return true;
-                }
+            }
+            catch
+            {
+                MessageBox.Show("You must have 4 pitchers");
+                return true;
             }
 
             //Check if there are more than 4 pitchers
