@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinalProject
 {
-    internal class Player
+    abstract class Player
     {
         #region variables
         private string _name;
